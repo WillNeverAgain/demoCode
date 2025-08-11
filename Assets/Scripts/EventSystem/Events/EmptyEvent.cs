@@ -5,5 +5,5 @@
 
 public class EmptyEvent:MyEventBase
 {
-
+ 
 }
