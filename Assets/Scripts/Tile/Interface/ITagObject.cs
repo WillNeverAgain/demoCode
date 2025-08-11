@@ -3,6 +3,6 @@ namespace Tile
 {
     public interface ITagObject
     {
-        public IList<string> Tags { get; set; }
+        public IList<string> Tags { get; }
     }
 }
