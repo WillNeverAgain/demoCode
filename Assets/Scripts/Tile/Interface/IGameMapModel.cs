@@ -7,6 +7,7 @@ namespace Tile
     /// 提供游戏的地图数据
     /// 外部使用不直接只有，仅在系统内调用
     /// 外部调用通过 Coordinator
+    /// 暂时只提供检索功能
     /// </summary>
     public interface IGameMapModel
     {
@@ -23,23 +24,27 @@ namespace Tile
         /// </summary>
         IGameTileCell[,] GameTileCells { get; }
         
+        public int MapWidth { get; }
+
+        public int MapHight { get; }
+
         /// <summary>
         /// 获得地板
         /// </summary>
         public IGameTileCell GetCell(int x, int y);
-        public IGameTileCell GetCell(Vector2Int logicalPosition);
+        public IGameTileCell GetCell(Vector2Int cellPosition);
 
         /// <summary>
         /// 获得物体
         /// </summary>
         public IList<IGameTileObject> GetObjects(int x, int y);
-        public IList<IGameTileObject> GetObjects(Vector2Int logicalPosition);
+        public IList<IGameTileObject> GetObjects(Vector2Int cellPosition);
         
         /// <summary>
         /// 获得有tag的物体
         /// </summary>
         public IList<ITagObject> GetObjectTags(int x, int y,string tagName);
-        public IList<ITagObject> GetObjectTags(Vector2Int logicalPosition,string tagName);
+        public IList<ITagObject> GetObjectTags(Vector2Int cellPosition,string tagName);
 
     }
 }

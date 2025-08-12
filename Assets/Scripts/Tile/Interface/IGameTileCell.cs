@@ -14,7 +14,7 @@ namespace Tile
         /// 只在View里调用
         /// 其它物体不调用
         /// </summary>
-        internal void Render(IGameMapRefreshContext tileObject);
+        internal void Render(int x,int y,IGameMapRefreshContext tileObject);
         public IList<IGameTileObject> GameTileObject { get; }
     }
 }
