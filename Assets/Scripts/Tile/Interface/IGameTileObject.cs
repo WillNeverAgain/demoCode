@@ -21,7 +21,7 @@ namespace Tile
 
         
         /// <summary>
-        /// 逻辑位置
+        /// 逻辑位置 
         /// </summary>
         public Vector2Int LogicalPosition { get; set; }
         /// <summary>
