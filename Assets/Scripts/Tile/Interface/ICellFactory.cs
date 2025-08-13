@@ -1,8 +1,12 @@
 ﻿using UnityEngine;
 namespace Tile
 {
-    public interface ICellFactory
+    public interface ICellFactory 
     {
+        /// <summary>
+        /// 预留通用接口
+        /// </summary>
+        public void Initialize(params object[] args);
         /// <summary>
         /// 创建Cell的工厂
         /// </summary>

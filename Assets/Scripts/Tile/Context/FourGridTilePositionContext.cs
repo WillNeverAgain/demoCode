@@ -42,8 +42,6 @@ namespace Tile.Context
         {
            return new Vector2Int((int)pos.x, (int)pos.y);
         }
-        
-        
         /// <summary>
         /// 默认在中间
         /// </summary>
