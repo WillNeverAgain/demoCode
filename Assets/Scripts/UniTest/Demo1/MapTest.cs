@@ -7,7 +7,7 @@ namespace UniTest.Demo1
     [UniTest]
     public static class MapTest
     {
-        private static IGameMapPositionContext _context = new FourGridTilePositionContext();
+        private static IGameMapPositionContext _context = new RhombusGridTilePositionContext();
         private class WorldTestData
         {
             Vector3 position;

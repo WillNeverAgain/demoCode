@@ -16,7 +16,5 @@ namespace Tile
         public IList<IGameTileObject> GetObjects(int x, int y);
         public IList<IGameTileObject> GetObjects(Vector2Int logicalPosition);
         
-        
-        
     }
 }

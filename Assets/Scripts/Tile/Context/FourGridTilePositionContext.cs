@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 namespace Tile.Context
 {
     
@@ -9,7 +10,10 @@ namespace Tile.Context
     ///     0,2   1,2   2,2   3,2
     ///     0,1   1,1   2,1   3,1    
     ///     0,0   1,0   2,0   3,0 ... Wide
+    ///
+    /// NOTE : 一开始实现的，不是菱形，实现错了
     /// </summary>
+    [Obsolete("正方形网格，起初实现错误\n正常菱形应该使用RhombusGridTilePositionContext")]
     public class FourGridTilePositionContext : IGameMapPositionContext
     {
         private Vector3 _positionOffset=Vector3.zero;

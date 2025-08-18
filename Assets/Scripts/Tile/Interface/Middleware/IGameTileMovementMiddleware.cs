@@ -2,7 +2,7 @@
 using UnityEngine;
 namespace Tile
 {
-    public interface IGameTileMovementCoordinator
+    public interface IGameTileMovementMiddleware : IMiddleware
     {
         /// <summary>
         /// 检测能否移动到对应的位置
