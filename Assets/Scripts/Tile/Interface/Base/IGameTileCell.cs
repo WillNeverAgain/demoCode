@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
-namespace Tile
+namespace Tile.Base
 {
     /// <summary>
     /// 游戏Tile的Cell类

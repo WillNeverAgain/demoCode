@@ -1,5 +1,5 @@
 ﻿using UnityEngine;
-namespace Tile
+namespace Tile.Base
 {
     /// <summary>
     /// 非地块的地图物品

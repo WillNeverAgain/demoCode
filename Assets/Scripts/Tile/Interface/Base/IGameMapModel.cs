@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
-namespace Tile
+namespace Tile.Base
 {
     /// <summary>
     /// 游戏地图资源的数据类
@@ -8,13 +8,15 @@ namespace Tile
     /// 外部使用不直接只有，仅在系统内调用
     /// 外部调用通过 Coordinator
     /// 暂时只提供检索功能
+    ///
+    /// 只存储数据，需要用content转换成游戏的上下文
     /// </summary>
     public interface IGameMapModel
     {
         /// <summary>
         /// TODO: 暂留通用初始化接口，后期扩展
         /// </summary>
-        public void Initialize(params object[] info);
+        public IGameMapModel Initialize(params object[] info);
         /// <summary>
         /// 默认信息
         /// </summary>

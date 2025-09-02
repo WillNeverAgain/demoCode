@@ -1,11 +1,12 @@
-﻿using UnityEngine;
+﻿using Tile.Base;
+using UnityEngine;
 namespace Tile.Factory
 {
     /// <summary>
     /// 临时工厂
     /// 暂时还每决定工厂的数据
     /// </summary>
-    public class DemoTIleCellFactory : ICellFactory
+    public class SimpleTIleCellFactory : ICellFactory
     {
         private GameObject GroundCellPrefab = null;
         public void Initialize(params object[] args)

@@ -1,5 +1,5 @@
 ﻿using UnityEngine;
-namespace Tile
+namespace Tile.Base
 {
     /// <summary>
     /// 空接口用来标记

@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Tile.Base;
+using UnityEngine;
 namespace Tile.View
 {
     /// <summary>
@@ -10,10 +11,14 @@ namespace Tile.View
     {
         private IGameMapModel _gameMapModel;
         private IGameMapRefreshContext _gameMapRefreshContext;
-        public void Initialize(IGameMapModel gameMapModel, IGameMapRefreshContext ctx, params object[] param)
+        public IGameMapView Initialize(
+                                IGameMapModel gameMapModel,
+                               IGameMapRefreshContext ctx, 
+                               params object[] param)
         {
             _gameMapModel = gameMapModel;
             _gameMapRefreshContext = ctx;
+            return this;
         }
         public void Render()
         {

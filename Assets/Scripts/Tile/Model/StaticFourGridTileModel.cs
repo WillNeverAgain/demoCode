@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using Tile.Base;
 using Tile.TillCell.Demo1;
 using UnityEngine;
 namespace Tile.Model
@@ -15,7 +16,7 @@ namespace Tile.Model
         private int _cell_wide=>_gameTileCells.GetLength(0);
         private int _cell_high=>_gameTileCells.GetLength(1);
 
-        public void Initialize(params object[] info)
+        public IGameMapModel Initialize(params object[] info)
         {
             _gameTileCells = new IGameTileCell[,]
             {
@@ -26,6 +27,7 @@ namespace Tile.Model
                 { new GroundCell(), new DarkCell() , new GroundCell() , new DarkCell() , new GroundCell() },
                 { new GroundCell(), new DarkCell() , new GroundCell() , new GroundCell() , new GroundCell() },
             };
+            return this;
         }
         public IGameTileCell DefaultCell {
             get {

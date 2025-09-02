@@ -1,9 +1,8 @@
 using Tile;
+using Tile.Base;
 using Tile.Context;
 namespace UniTest.Demo1
 {
-    using System.Collections;
-    using System.Collections.Generic;
     using UnityEngine;
 
     public class PosTestOBJ : MonoBehaviour

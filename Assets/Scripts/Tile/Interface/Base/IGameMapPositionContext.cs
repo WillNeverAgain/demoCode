@@ -1,5 +1,5 @@
 ﻿using UnityEngine;
-namespace Tile
+namespace Tile.Base
 {
     public interface IGameMapPositionContext
     {

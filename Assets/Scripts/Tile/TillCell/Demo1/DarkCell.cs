@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using Tile.Base;
 using UnityEngine;
 namespace Tile.TillCell.Demo1
 {
@@ -17,6 +19,6 @@ namespace Tile.TillCell.Demo1
            //TODO
         }
         public IList<IGameTileObject> GameTileObject => 
-            throw new System.NotSupportedException("尝试获取无法放置物体的cell的物体");
+            throw new NotSupportedException("尝试获取无法放置物体的cell的物体");
     }
 }

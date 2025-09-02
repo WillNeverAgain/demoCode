@@ -52,7 +52,7 @@ public class UniTestEditor : EditorWindow
         {
             // 过滤系统程序集提升性能
             if (assembly.FullName.StartsWith("Unity") || 
-                assembly.FullName.StartsWith("System"))
+                assembly.FullName.StartsWith("SimpleTileMapSystem"))
                 continue;
             
             try

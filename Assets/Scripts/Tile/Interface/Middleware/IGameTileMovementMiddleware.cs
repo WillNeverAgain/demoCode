@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
+using Tile.Base;
 using UnityEngine;
-namespace Tile
+namespace Tile.Middleware
 {
     public interface IGameTileMovementMiddleware : IMiddleware
     {
