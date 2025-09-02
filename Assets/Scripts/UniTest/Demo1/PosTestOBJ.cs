@@ -7,10 +7,12 @@ namespace UniTest.Demo1
 
     public class PosTestOBJ : MonoBehaviour
     {
-        private static IGameMapPositionContext _context = new RhombusGridTilePositionContext();
+        private static IGameMapPositionContext _context ;
+        [SerializeField] private Grid _grid;
         // Start is called before the first frame update
         void Start()
         {
+            _context= new UnityGridTilePositionContext(_grid);
             _context.Initialize(new Vector3(1,0,0));
         }
         private class WorldTestData

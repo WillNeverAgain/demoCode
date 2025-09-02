@@ -21,6 +21,5 @@ namespace Tile.TillCell.Demo1
         }
         public IList<IGameTileObject> GameTileObject => objects;
         private List<IGameTileObject> objects = new List<IGameTileObject>();
-
     }
 }

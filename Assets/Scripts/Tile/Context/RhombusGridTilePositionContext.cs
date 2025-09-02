@@ -59,36 +59,13 @@ namespace Tile.Context
             return new Vector3(x, y, origin.z);
         }
     }
-    /// <summary>
-    /// 地图的逻辑位置应该符合下面公式
-    ///                
-    ///     0,1      2,2
-    ///            1,1      2,1
-    ///     0,0       1,0       2,0 
-    ///            1,-1
-    ///     0,-1     
-    ///
-    ///     旋转矩阵 Cell To  Logical  (矩阵加取下限)
-    ///     x           y           z           w
-    ///     1           1           0           _logicalOffset.x
-    ///     -0.5       0.5        0           _logicalOffset.y
-    ///     0           0           1           0
-    ///     0           0           0           1
-    ///
-    ///     旋转矩阵 Logical To  Cell   (矩阵加取下限)  再除 根号2
-    ///     x           y           z           w
-    ///     one_divide_root_tow      -one_divide_root_tow         0        -_logicalOffset.x
-    ///     one_divide_root_tow       one_divide_root_tow          0       -_logicalOffset.y
-    ///     0           0           1           0
-    ///     0           0           0           1
-    /// </summary>
     public class RhombusGridTilePositionContext: IGameMapPositionContext
     {
            private Vector3 _positionOffset=Vector3.zero;
 
            private Vector2Int _logicalPosition = new Vector2Int(0, 0);
-           private float _longAxis=2;
-           private float _shortAxis=1;
+           private float _longAxis=1;
+           private float _shortAxis=0.75f;
 
         /// <param name="offset">偏移量</param>
         public void Initialize(Vector3 wordOffset)
