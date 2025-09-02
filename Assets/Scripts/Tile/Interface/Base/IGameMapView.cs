@@ -13,7 +13,7 @@ namespace Tile.Base
         /// <summary>
         /// 调用后会绘制地图
         /// 外部调用接口 不传入数据
-        /// 由生命周期相关的系统调用
+        /// 由tile系统调用
         /// </summary>
         public void Render();
     }

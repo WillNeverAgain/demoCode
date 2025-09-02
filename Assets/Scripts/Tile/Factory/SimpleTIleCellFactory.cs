@@ -1,4 +1,6 @@
 ﻿using Tile.Base;
+using Tile.Interface.Base;
+using Tile.SO;
 using UnityEngine;
 namespace Tile.Factory
 {
@@ -13,9 +15,10 @@ namespace Tile.Factory
         {
             AssetBundle.LoadFromFile("");
         }
-        public GameObject CreateCell(CreateCellInfo info)
+        public GameObject CreateCell(ICreateCellInfo infoSo)
         {
             return null;
         }
+
     }
 }

@@ -13,17 +13,15 @@ namespace UniTest.Demo1
         {
             Vector3 position;
             private Vector2Int cellPos;
-            private Vector2Int logicalPos;
-            private Vector2Int cellToLogicalPos;
+            private Vector2 logicalPos;
+            private Vector2 cellToLogicalPos;
             private Vector3 cellToWorldPos;
 
             public WorldTestData()
             {
                 position=new Vector3(Random.Range(-10, 10), Random.Range(-10, 10), Random.Range(-10, 10));
-                cellPos= _context.WorldPosToCell(position);
                 logicalPos= _context.WorldPosToLogic(position);
                 cellToLogicalPos = _context.CellPosToLogic(cellPos);
-                cellToWorldPos= _context.CellPosToWorld(cellPos);
             }
             public override string ToString()
             {

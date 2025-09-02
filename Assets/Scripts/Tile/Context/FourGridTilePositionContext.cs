@@ -14,6 +14,8 @@ namespace Tile.Context
     ///
     /// NOTE : 一开始实现的，不是菱形，实现错了
     /// </summary>
+    ///     //TODO:  把logical逻辑改成非整数的了，需要修改一下
+
     [Obsolete("正方形网格，起初实现错误\n正常菱形应该使用RhombusGridTilePositionContext")]
     public class FourGridTilePositionContext : IGameMapPositionContext
     {
@@ -28,10 +30,22 @@ namespace Tile.Context
             //这里直接用临近的位置做逻辑0点了
             _logicalOffset = new Vector2Int((int)wordOffset.x, (int)wordOffset.y);
         }
+        public Vector2Int LogicPosToCell(Vector2 position)
+        {
+            throw new NotImplementedException();
+        }
 
         public Vector2Int LogicPosToCell(int x, int y)
         {
             return new Vector2Int(x-_logicalOffset.x, y-_logicalOffset.y);
+        }
+        Vector2 IGameMapPositionContext.CellPosToLogic(Vector2Int pos)
+        {
+            return CellPosToLogic(pos);
+        }
+        public Vector3 LogicPosToWorld(Vector2 pos)
+        {
+            throw new NotImplementedException();
         }
 
         public Vector2Int CellPosToLogic(int x, int y)
@@ -42,6 +56,10 @@ namespace Tile.Context
         public Vector3 LogicPosToWorld(int x, int y)
         {
             return new Vector3(x + _logicalOffset.x+0.5f, y + _logicalOffset.y+0.5f, 0);
+        }
+        Vector2 IGameMapPositionContext.WorldPosToLogic(Vector3 pos)
+        {
+            return WorldPosToLogic(pos);
         }
         public Vector2Int WorldPosToLogic(Vector3 pos)
         {

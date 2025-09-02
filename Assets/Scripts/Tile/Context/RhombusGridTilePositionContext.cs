@@ -59,6 +59,7 @@ namespace Tile.Context
             return new Vector3(x, y, origin.z);
         }
     }
+    //TODO:  把logical逻辑改成非整数的了，需要修改一下
     public class RhombusGridTilePositionContext: IGameMapPositionContext
     {
            private Vector3 _positionOffset=Vector3.zero;
@@ -75,9 +76,21 @@ namespace Tile.Context
             _positionOffset = wordOffset;
             _logicalPosition = WorldPosToLogic(_positionOffset);
         }
+        public Vector2Int LogicPosToCell(Vector2 position)
+        {
+            throw new NotImplementedException();
+        }
+        public Vector3 LogicPosToWorld(Vector2 pos)
+        {
+            throw new NotImplementedException();
+        }
         public Vector3 LogicPosToWorld(int x, int y)
         {
             return RhombusMapCore.LogicalToWorldCore(new Vector2Int(x,y), _positionOffset,_longAxis,_shortAxis);
+        }
+        Vector2 IGameMapPositionContext.WorldPosToLogic(Vector3 pos)
+        {
+            return WorldPosToLogic(pos);
         }
         public Vector2Int WorldPosToLogic(Vector3 pos)
         { 
@@ -86,6 +99,10 @@ namespace Tile.Context
         public Vector2Int LogicPosToCell(int x, int y)
         {
             return new Vector2Int(x,y)-_logicalPosition;
+        }
+        Vector2 IGameMapPositionContext.CellPosToLogic(Vector2Int pos)
+        {
+            return CellPosToLogic(pos);
         }
         /// <summary>
         /// 默认在中间

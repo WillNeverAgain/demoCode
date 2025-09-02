@@ -1,4 +1,7 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using Tile.Interface.Base;
+using Tile.SO;
+using UnityEngine;
 namespace Tile.Base
 {
     public interface ICellFactory 
@@ -10,11 +13,7 @@ namespace Tile.Base
         /// <summary>
         /// 创建Cell的工厂
         /// </summary>
-        public GameObject CreateCell(CreateCellInfo info);
+        public GameObject CreateCell(ICreateCellInfo infoSo);
     }
-    //TODO: 通用的通过模板创建cell的信息
-    public struct CreateCellInfo
-    {
-        
-    }
+
 }

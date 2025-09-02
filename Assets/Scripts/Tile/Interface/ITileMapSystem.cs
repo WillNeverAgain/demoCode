@@ -22,5 +22,6 @@ namespace Tile
         public IList<IGameTileObject> GetObjects(int x, int y);
         public IList<IGameTileObject> GetObjects(Vector2Int logicalPosition);
         public T GetMiddleware<T>() where T : IMiddleware;
+        public void Update(float deltaTime);
     }
 }
