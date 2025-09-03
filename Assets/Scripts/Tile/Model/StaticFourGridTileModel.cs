@@ -20,12 +20,42 @@ namespace Tile.Model
         {
             _gameTileCells = new IGameTileCell[,]
             {
-                { new GroundCell(), new GroundCell() , new GroundCell() , new GroundCell() , new GroundCell() },
-                { new GroundCell(), new GroundCell() , new GroundCell() , new GroundCell() , new GroundCell() },
-                { new GroundCell(), new GroundCell() , new GroundCell() , new GroundCell() , new GroundCell() },
-                { new GroundCell(), new GroundCell() , new GroundCell() , new GroundCell() , new GroundCell() },
-                { new GroundCell(), new GroundCell() , new GroundCell() , new GroundCell() , new GroundCell() },
-                { new GroundCell(), new GroundCell() , new GroundCell() , new GroundCell() , new GroundCell() },
+                {
+                    new GroundCell(), new GroundCell() , new GroundCell() , new GroundCell() , new GroundCell(),
+                    new GroundCell(), new GroundCell() , new GroundCell() , new GroundCell() , new GroundCell()
+                },
+                {
+                    new GroundCell(), new GroundCell() , new GroundCell() , new GroundCell() , new GroundCell(),
+                    new GroundCell(), new GroundCell() , new GroundCell() , new GroundCell() , new GroundCell()
+                },
+                           {
+                    new GroundCell(), new GroundCell() , new GroundCell() , new GroundCell() , new GroundCell(),
+                    new GroundCell(), new GroundCell() , new GroundCell() , new GroundCell() , new GroundCell()
+                },
+                           {
+                    new GroundCell(), new GroundCell() , new GroundCell() , new GroundCell() , new GroundCell(),
+                    new GroundCell(), new GroundCell() , new GroundCell() , new GroundCell() , new GroundCell()
+                },
+                           {
+                    new GroundCell(), new GroundCell() , new GroundCell() , new GroundCell() , new GroundCell(),
+                    new GroundCell(), new GroundCell() , new GroundCell() , new GroundCell() , new GroundCell()
+                },
+                           {
+                    new GroundCell(), new GroundCell() , new GroundCell() , new GroundCell() , new GroundCell(),
+                    new GroundCell(), new GroundCell() , new GroundCell() , new GroundCell() , new GroundCell()
+                },
+                           {
+                    new GroundCell(), new GroundCell() , new GroundCell() , new GroundCell() , new GroundCell(),
+                    new GroundCell(), new GroundCell() , new GroundCell() , new GroundCell() , new GroundCell()
+                },
+                           {
+                    new GroundCell(), new GroundCell() , new GroundCell() , new GroundCell() , new GroundCell(),
+                    new GroundCell(), new GroundCell() , new GroundCell() , new GroundCell() , new GroundCell()
+                },
+                           {
+                    new GroundCell(), new GroundCell() , new GroundCell() , new GroundCell() , new GroundCell(),
+                    new GroundCell(), new GroundCell() , new GroundCell() , new GroundCell() , new GroundCell()
+                },
             };
             return this;
         }

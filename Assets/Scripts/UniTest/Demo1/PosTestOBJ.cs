@@ -27,7 +27,9 @@ namespace UniTest.Demo1
             {
                 position = ps;
                 logicalPos= _context.WorldPosToLogic(position);
+                cellPos=_context.WorldPosToCell(position);
                 cellToLogicalPos = _context.CellPosToLogic(cellPos);
+                cellToWorldPos = _context.CellPosToWorld(cellPos);
             }
             public override string ToString()
             {

@@ -35,7 +35,7 @@ namespace Tile.TillCell.Demo1
                 OnInit();
             }
             gameObject= refreshContext.CellFactory.CreateCell(_CellInfo);
-            gameObject.transform.position = refreshContext.PositionContext.LogicPosToWorld(new Vector2(x, y));
+            gameObject.transform.position = refreshContext.PositionContext.CellPosToWorld(new Vector2Int(x, y));
             gameObject.SetActive(true);
         }
         public IList<IGameTileObject> GameTileObject => objects;
