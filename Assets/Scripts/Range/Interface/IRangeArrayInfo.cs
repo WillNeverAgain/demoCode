@@ -14,27 +14,10 @@ namespace Range.Interface
     /// 同一组存在逻辑上的先后关系 (这种先后可以表示距离的顺序)
     /// 不同组的同一层存在顺序关系
     /// </summary>
-    public interface IRangeInfo
+    public interface IRangeArrayInfo
     {
-        /// <summary>
-        /// 单个范围信息
-        /// </summary>
-        [Serializable]
-        public class Range
-        {
-            /// <summary>
-            /// 组号
-            /// </summary>
-            public int groupID;
-            /// <summary>
-            /// 层号(总)
-            /// </summary>
-            public int layerID;
-            /// <summary>
-            /// 层号(在组内的层号)
-            /// </summary>
-            public int localLayerID;
-        }
+        public int MaxLayer { get; }
+        public int MaxGroup { get; }
 
         public void Initialize(params string[] args);
         /// <summary>
