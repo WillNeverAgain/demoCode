@@ -33,22 +33,6 @@ namespace Tile
             _mapView.Initialize(_gameMapModel,refreshContext);
             return this;
         }
-        public IGameTileCell GetCell(int x, int y)
-        {
-            return _gameMapModel.GetCell(x, y);
-        }
-        public IGameTileCell GetCell(Vector2Int logicalPosition)
-        {
-            return _gameMapModel.GetCell(logicalPosition);
-        }
-        public IList<IGameTileObject> GetObjects(int x, int y)
-        {
-            return _gameMapModel.GetObjects(x, y);            
-        }
-        public IList<IGameTileObject> GetObjects(Vector2Int logicalPosition)
-        {
-            return _gameMapModel.GetObjects(logicalPosition);
-        }
         public T GetMiddleware<T>() where T : IMiddleware
         {
             return _middlewareFactory.GetMiddleware<T>();

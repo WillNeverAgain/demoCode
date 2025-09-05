@@ -21,47 +21,47 @@ namespace UniTest.Demo1
             {
                 layerID = 0,
                 groupID = 0,
-                offset = Vector3.zero,
+                offset = Vector2Int.zero,
             });
             ranges.Add(new RangeData()
             {
                 layerID = 1,
                 groupID = 0,
-                offset = Vector3.left,
+                offset = Vector2Int.left,
             });
             ranges.Add(new RangeData()
             {
                 layerID = 1,
                 groupID = 0,
-                offset = Vector3.right,
+                offset = Vector2Int.right,
             });
             ranges.Add(new RangeData()
             {
                 layerID = 1,
                 groupID = 0,
-                offset = Vector3.up,
+                offset = Vector2Int.up,
             });
             ranges.Add(new RangeData()
             {
                 layerID = 1,
                 groupID = 0,
-                offset = Vector3.down,
+                offset = Vector2Int.down,
             });
         }
-        public IReadOnlyList<Vector2> GetLayerRanges(int layer)
+        public IReadOnlyList<Vector2Int> GetLayerRanges(int layer)
         {
             return ranges.Where(val=>val.LayerID==layer).Select(te=>te.Offset).ToList();
         }
-        public IReadOnlyList<Vector2> GetGroupRanges(int group)
+        public IReadOnlyList<Vector2Int> GetGroupRanges(int group)
         {
             return ranges.Where(val=>val.GroupID==group).Select(te=>te.Offset).ToList();
         }
-        public IReadOnlyList<Vector2> GetRanges(int layer, int group)
+        public IReadOnlyList<Vector2Int> GetRanges(int layer, int group)
         {
             return ranges.Where(val=>val.GroupID==group && val.LayerID==layer).Select(te=>te.Offset).ToList();
 
         }
-        public IReadOnlyList<Vector2> GetAllRanges()
+        public IReadOnlyList<Vector2Int> GetAllRanges()
         {
             return ranges.Select(te=>te.Offset).ToList();
         }

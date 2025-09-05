@@ -10,11 +10,7 @@ namespace Tile.Middleware.Factory
     public class SimpleMiddlewareFactory : IMiddlewareFactory
     {
         private IGameMapModel _model;
-        private Dictionary<Type, IMiddleware> _middlewares = new Dictionary<Type, IMiddleware>()
-        {
-            {typeof(ICellRangeMiddleware),null},
-            {typeof(IGameTileMovementMiddleware),null},
-        };
+        private Dictionary<Type, IMiddleware> _middlewares = new Dictionary<Type, IMiddleware>();
         public IMiddlewareFactory Initialize(params object[] args)
         {
             return this;

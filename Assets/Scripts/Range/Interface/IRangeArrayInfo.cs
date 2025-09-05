@@ -23,18 +23,18 @@ namespace Range.Interface
         /// <summary>
         /// 获得某一层的所有范围
         /// </summary>
-        public IReadOnlyList<Vector2> GetLayerRanges(int layer);
+        public IReadOnlyList<Vector2Int> GetLayerRanges(int layer);
         /// <summary>
         /// 获得某一组的所有范围
         /// </summary>
-        public IReadOnlyList<Vector2> GetGroupRanges(int group);
+        public IReadOnlyList<Vector2Int> GetGroupRanges(int group);
         /// <summary>
         /// 获得某一层某一组的范围
         /// </summary>
-        public IReadOnlyList<Vector2> GetRanges(int layer,int group);
+        public IReadOnlyList<Vector2Int> GetRanges(int layer,int group);
         /// <summary>
         /// 获得所有的范围信息
         /// </summary>
-        public IReadOnlyList<Vector2> GetAllRanges();
+        public IReadOnlyList<Vector2Int> GetAllRanges();
     }
 }

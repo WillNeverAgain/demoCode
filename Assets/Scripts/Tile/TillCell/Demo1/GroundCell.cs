@@ -1,5 +1,8 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using Tile.Base;
+using Tile.Interface.Base;
+using Tile.ObjectContainer;
 using Tile.SO;
 using Tile.TileTags;
 using UnityEngine;
@@ -10,7 +13,7 @@ namespace Tile.TillCell.Demo1
     /// </summary>
     public class GroundCell : IGameTileCell
     {
-        private static CreateCellInfo_SO _CellInfo;
+        private static ICreateCellInfo _CellInfo;
         public IList<string> Tags => tags;
         private List<string> tags=new List<string>()
         {
@@ -24,6 +27,11 @@ namespace Tile.TillCell.Demo1
                 CreateCell(x,y,refreshContext);
             }
         }
+        public Vector2Int CellPosition =>cellPosition;
+        public IMapObjectContainer Container => _container;
+        private IMapObjectContainer _container;
+        private Vector2Int cellPosition=Vector2Int.zero;
+
         private void OnInit()
         {
             _CellInfo = Resources.Load<CreateCellInfo_SO>("Demo1/SOs/GroundCell");
@@ -34,11 +42,12 @@ namespace Tile.TillCell.Demo1
             {
                 OnInit();
             }
+            _container = new DefaultObjectContainer();
             gameObject= refreshContext.CellFactory.CreateCell(_CellInfo);
-            gameObject.transform.position = refreshContext.PositionContext.CellPosToWorld(new Vector2Int(x, y));
+            cellPosition = new Vector2Int(x, y);
+            gameObject.transform.position = refreshContext.PositionContext.CellPosToWorld(cellPosition);
             gameObject.SetActive(true);
         }
-        public IList<IGameTileObject> GameTileObject => objects;
-        private List<IGameTileObject> objects = new List<IGameTileObject>();
+
     }
 }

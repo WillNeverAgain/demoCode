@@ -14,9 +14,9 @@ namespace Range
         /// <summary>
         /// 偏移量
         /// </summary>
-        public Vector2 offset;
+        public Vector2Int offset;
         public int GroupID => groupID;
         public int LayerID => layerID;
-        public Vector2 Offset => offset;
+        public Vector2Int Offset => offset;
     }
 }

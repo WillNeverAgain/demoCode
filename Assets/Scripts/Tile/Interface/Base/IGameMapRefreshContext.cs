@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Tile.Interface.Base;
+using UnityEngine;
 namespace Tile.Base
 {
     /// <summary>
@@ -9,7 +10,7 @@ namespace Tile.Base
     /// 在管理器内初始化
     /// 并传入其它类
     /// </summary>
-    public interface IGameMapRefreshContext
+    public interface IGameMapRefreshContext : IMapContext
     {
             void Initialize(ICellFactory factory,IGameMapPositionContext positionContext);
             /// <summary>
@@ -20,9 +21,7 @@ namespace Tile.Base
             /// 提供位置转换的工具
             /// </summary>
             IGameMapPositionContext PositionContext { get; }
-            
-            
     }
 
-
+    
 }

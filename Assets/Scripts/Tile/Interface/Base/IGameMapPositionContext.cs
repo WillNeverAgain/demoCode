@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 namespace Tile.Base
 {
-    public interface IGameMapPositionContext
+    public interface IGameMapPositionContext  : IMapContext
     {
 
         public void Initialize(Vector3 wordOffset);

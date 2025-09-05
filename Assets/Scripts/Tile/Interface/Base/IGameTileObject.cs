@@ -6,28 +6,10 @@ namespace Tile.Base
     /// </summary>
     public interface IGameTileObject : ITagObject
     {
-        public delegate void TilePositionChangedDelegate(Vector2Int oldPosition, Vector2Int newPosition);
-        
         /// <summary>
-        /// 需要在实现里手动调用
-        /// 外部只注册
+        /// 网格位置
         /// </summary>
-        public event TilePositionChangedDelegate OnTileLogicalPositionChanged;
-
-        /// <summary>
-        /// 视图位置 动画结束之后刷新
-        /// </summary>
-        public event TilePositionChangedDelegate OnTileViewPositionChanged;
-
-        
-        /// <summary>
-        /// 逻辑位置 
-        /// </summary>
-        public Vector2Int LogicalPosition { get; set; }
-        /// <summary>
-        /// 视图位置
-        /// </summary>
-        public Vector2Int ViewPosition { get; set; }
+        public Vector2Int CellPosition { get; set; }
         /// <summary>
         /// 只在View里调用
         /// 其它物体不调用

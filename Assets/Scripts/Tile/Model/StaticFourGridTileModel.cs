@@ -79,24 +79,25 @@ namespace Tile.Model
         {
             return GetCell(cellPosition.x, cellPosition.y);
         }
-        public IList<IGameTileObject> GetObjects(int x, int y)
+        public IReadOnlyList<ITagObject> GetCellAndObjects(int x, int y)
         {
-            return GetCell(x, y).GameTileObject;
+            return GetCell(x, y).Container.GetSelfAndAllObjects();
+
         }
-        public IList<IGameTileObject> GetObjects(Vector2Int cellPosition)
+        public IReadOnlyList<ITagObject> GetCellAndObjects(Vector2Int cellPosition)
         {
-            return GetCell(cellPosition).GameTileObject;
+            return GetCell(cellPosition).Container.GetSelfAndAllObjects();
         }
-        public IList<ITagObject> GetObjectTags(int x, int y, string tagName)
+        public IReadOnlyList<ITagObject> GetObjectTags(int x, int y, string tagName)
         {
-            return GetCell(x,y).GameTileObject.
+            return GetCell(x,y).Container.GameTileObject.
                 Where(obj=>obj.Tags.Contains(tagName))
                 .Select(a=>a as ITagObject)
                 .ToList();
         }
-        public IList<ITagObject> GetObjectTags(Vector2Int cellPosition, string tagName)
+        public IReadOnlyList<ITagObject> GetObjectTags(Vector2Int cellPosition, string tagName)
         {
-            return GetCell(cellPosition).GameTileObject.
+            return GetCell(cellPosition).Container.GameTileObject.
                 Where(obj=>obj.Tags.Contains(tagName))
                 .Select(a=>a as ITagObject)
                 .ToList();

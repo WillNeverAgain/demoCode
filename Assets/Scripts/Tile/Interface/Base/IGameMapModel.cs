@@ -25,28 +25,18 @@ namespace Tile.Base
         /// 地面信息
         /// </summary>
         IGameTileCell[,] GameTileCells { get; }
-        
         public int MapWidth { get; }
 
         public int MapHight { get; }
-
         /// <summary>
         /// 获得地板
         /// </summary>
         public IGameTileCell GetCell(int x, int y);
         public IGameTileCell GetCell(Vector2Int cellPosition);
-
         /// <summary>
         /// 获得物体
         /// </summary>
-        public IList<IGameTileObject> GetObjects(int x, int y);
-        public IList<IGameTileObject> GetObjects(Vector2Int cellPosition);
-        
-        /// <summary>
-        /// 获得有tag的物体
-        /// </summary>
-        public IList<ITagObject> GetObjectTags(int x, int y,string tagName);
-        public IList<ITagObject> GetObjectTags(Vector2Int cellPosition,string tagName);
-
+        public IReadOnlyList<ITagObject> GetCellAndObjects(int x, int y);
+        public IReadOnlyList<ITagObject> GetCellAndObjects(Vector2Int cellPosition);
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Tile.Base;
 using UnityEngine;
 namespace Tile.Base
 {
@@ -15,6 +16,8 @@ namespace Tile.Base
         /// 其它物体不调用
         /// </summary>
         internal void Render(int x,int y,IGameMapRefreshContext tileObject);
-        public IList<IGameTileObject> GameTileObject { get; }
+        public Vector2Int CellPosition { get; }
+        public IMapObjectContainer Container { get; }
     }
+
 }

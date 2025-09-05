@@ -11,6 +11,10 @@ namespace Tile
     public interface ITileMapSystem
     {
         public ITileMapSystem Initialize(params string[] args);
+        public void Update(float deltaTime);
+    }
+    public interface IMapObjectGetter
+    {
         /// <summary>
         /// 获得地板
         /// </summary>
@@ -21,7 +25,13 @@ namespace Tile
         /// </summary>
         public IList<IGameTileObject> GetObjects(int x, int y);
         public IList<IGameTileObject> GetObjects(Vector2Int logicalPosition);
+    }
+    public interface IMiddlewareGetter
+    {
         public T GetMiddleware<T>() where T : IMiddleware;
-        public void Update(float deltaTime);
+    }
+    public interface IMapContextGetter
+    {
+        public T GetContext<T>() where T : IMapContext;
     }
 }

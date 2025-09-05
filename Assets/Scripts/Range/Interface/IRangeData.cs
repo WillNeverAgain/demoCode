@@ -12,9 +12,9 @@ namespace Range
         /// </summary>
         public int LayerID{get;}
         /// <summary>
-        /// 偏移量
+        /// 偏移量 （Cell Pos）
         /// </summary>
-        public Vector2 Offset{get;}
+        public Vector2Int Offset{get;}
     }
     
 

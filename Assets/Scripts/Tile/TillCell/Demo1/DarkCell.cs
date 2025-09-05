@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Tile.Base;
+using Tile.ObjectContainer;
 using UnityEngine;
 namespace Tile.TillCell.Demo1
 {
@@ -16,9 +17,16 @@ namespace Tile.TillCell.Demo1
 
         void IGameTileCell.Render(int x, int y, IGameMapRefreshContext tileObject)
         {
-           //TODO
+            cellPosition=new Vector2Int(x,y);
         }
-        public IList<IGameTileObject> GameTileObject => 
-            throw new NotSupportedException("尝试获取无法放置物体的cell的物体");
+        public Vector2Int CellPosition => cellPosition;
+        public IMapObjectContainer Container => _container;
+        private IMapObjectContainer _container = new NullObjectContainer();
+        private Vector2Int cellPosition = Vector2Int.zero;
+        public IReadOnlyList<ITagObject> GetSelfAndAllObjects()
+        {
+            return null;
+        }
+
     }
 }
