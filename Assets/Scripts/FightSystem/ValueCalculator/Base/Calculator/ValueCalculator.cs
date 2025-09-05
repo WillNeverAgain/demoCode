@@ -8,7 +8,7 @@ using System.Collections.Generic;
 
 namespace MyFrame.FightSystem.Calculator
 {
-    public class ValueCulator : IValueCalculator
+    public class ValueCalculator : IValueCalculator
     {
         /// <summary>
         /// 计算最终伤害
@@ -16,17 +16,16 @@ namespace MyFrame.FightSystem.Calculator
         /// <param name="ctx">数据上下文，包含影响数据的因素</param>
         /// <param name="all_mods">调整器容器，包含所有应当应用的规则</param>
         /// <returns>计算结果容器，包含初始值，最终值以及溯源记录</returns>
-        public ValueBreakdown Compute<T, U>(in T ctx, IEnumerable<U> all_mods)
+        public ValueBreakdown Compute<T, U>(in T ctx, IEnumerable<U> all_mods , float value)
             where T : IValueContext
             where U : IValueModifier<T>
         {
-            float value = ctx.BaseValue;
             ValueBreakdown db_res = new ValueBreakdown(value);
 
-            value = applyStage(ctx, all_mods, value, ModifierStage.PreAdd, db_res);
-            value = applyStage(ctx, all_mods, value, ModifierStage.Multiplier, db_res);
-            value = applyStage(ctx, all_mods, value, ModifierStage.PostAdd, db_res);
-            value = applyStage(ctx, all_mods, value, ModifierStage.Finalize, db_res);
+            value = applyStage(ctx, all_mods, value, ModifierStage.PreAdd,ref db_res);
+            value = applyStage(ctx, all_mods, value, ModifierStage.Multiplier,ref db_res);
+            value = applyStage(ctx, all_mods, value, ModifierStage.PostAdd,ref db_res);
+            value = applyStage(ctx, all_mods, value, ModifierStage.Finalize,ref db_res);
 
             value = MathF.Floor(value);
 
@@ -35,7 +34,7 @@ namespace MyFrame.FightSystem.Calculator
             return db_res;
         }
 
-        private float applyStage<T, U>(in T ctx , IEnumerable<U> all_mods ,float current_value , ModifierStage current_stage, ValueBreakdown bd) 
+        private float applyStage<T, U>(in T ctx , IEnumerable<U> all_mods ,float current_value , ModifierStage current_stage,ref ValueBreakdown bd) 
             where T : IValueContext
             where U : IValueModifier<T>
         {
@@ -61,22 +60,22 @@ namespace MyFrame.FightSystem.Calculator
                         bd.Notes.Add($"×{mul:0.###} 来自 {m.Source}");
                         break;
 
-                    //case StageStacking.Override:
-                    //    cur = m.GetValue(ctx);
-                    //    bd.Notes.Add($"=覆写为 {cur} 来自 {m.Source}");
-                    //    break;
+                    case StageStacking.Override:
+                        cur = m.GetValue(ctx);
+                        bd.Notes.Add($"=覆写为 {cur} 来自 {m.Source}");
+                        break;
 
-                    //case StageStacking.ClampMin:
-                    //    var minV = m.GetValue(ctx);
-                    //    cur = MathF.Max(cur, minV);
-                    //    bd.Notes.Add($"≥{minV} 最低保障 来自 {m.Source}");
-                    //    break;
+                    case StageStacking.ClampMin:
+                        var minV = m.GetValue(ctx);
+                        cur = MathF.Max(cur, minV);
+                        bd.Notes.Add($"≥{minV} 最低保障 来自 {m.Source}");
+                        break;
 
-                    //case StageStacking.ClampMax:
-                    //    var maxV = m.GetValue(ctx);
-                    //    cur = MathF.Min(cur, maxV);
-                    //    bd.Notes.Add($"≤{maxV} 上限限制 来自 {m.Source}");
-                    //    break;
+                    case StageStacking.ClampMax:
+                        var maxV = m.GetValue(ctx);
+                        cur = MathF.Min(cur, maxV);
+                        bd.Notes.Add($"≤{maxV} 上限限制 来自 {m.Source}");
+                        break;
                 }
             }
 

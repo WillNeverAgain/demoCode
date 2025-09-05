@@ -3,24 +3,12 @@
 //Version : 0.1
 //UnityVersion : 2022.3.62f1c1
 
+using System.Collections.ObjectModel;
+
 namespace MyFrame.FightSystem.Calculator
 {
     public class StatContext : IValueContext
     {
-        public float BaseValue
-        {
-            get;
-        }
-
-        public StatValueType ValueType
-        {
-            get;
-        }
-
-        public StatContext(float baseValue, StatValueType valueType)
-        {
-            this.BaseValue = baseValue;
-            this.ValueType = valueType;
-        }
+        public ReadOnlyDictionary<AttributeType , AttributeDataUnit<StatContext>> UnitAttribute { get; set; }
     }
 }

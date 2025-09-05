@@ -4,23 +4,27 @@
 //UnityVersion : 2022.3.62f1c1
 
 
+using MyFrame.FightSystem.Skill;
+using MyFrame.FightSystem.Unit;
+
 namespace MyFrame.FightSystem.Calculator
 {
     public class DamageContext : IValueContext
     {
-        public FightUnit Attacker
+        public ISkillExecuter Attacker
         {
             get;
         }
 
-        public FightUnit Defenser
+        public ISkillTarget Defenser
         {
             get;
         }
 
-        public float BaseValue
+        public DamageContext(ISkillExecuter attacker, ISkillTarget defenser)
         {
-            get;
+            Attacker = attacker;
+            Defenser = defenser;
         }
     }
 

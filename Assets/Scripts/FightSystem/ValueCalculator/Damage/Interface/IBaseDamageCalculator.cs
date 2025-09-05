@@ -4,8 +4,12 @@
 //UnityVersion : 2022.3.62f1c1
 
 using MyFrame.FightSystem;
+using MyFrame.FightSystem.Calculator;
+using System.Collections.ObjectModel;
 
 public interface IBaseDamageCalculator
 {
-    public float Compute(float final_attack,float final_defense,AttackType attack_type);
+    public float Compute(ReadOnlyDictionary<AttributeType, AttributeDataUnit<StatContext>> unit_attribute,
+        ReadOnlyDictionary<AttributeType, AttributeDataUnit<StatContext>> target_attribute,
+        AttackType attack_type);
 }
