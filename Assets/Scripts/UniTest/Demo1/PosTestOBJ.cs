@@ -42,7 +42,7 @@ namespace UniTest.Demo1
         {
             if (timer <= 0)
             {
-                Debug.Log(   new WorldTestData(transform.position).ToString());
+                // Debug.Log(   new WorldTestData(transform.position).ToString());
                 timer = 0.5f;
             }
             timer -= Time.deltaTime;

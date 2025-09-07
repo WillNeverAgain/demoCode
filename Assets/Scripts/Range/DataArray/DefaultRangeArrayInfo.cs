@@ -15,7 +15,7 @@ namespace Range
         }
         public int MaxLayer => 1;
         public int MaxGroup => 1;
-        public void Initialize(params string[] args)
+        public IRangeArrayInfo Initialize(params string[] args)
         {
             throw new System.NotImplementedException("使用默认的范围组请在构造函数初始化,而不是在Initialize中");
         }

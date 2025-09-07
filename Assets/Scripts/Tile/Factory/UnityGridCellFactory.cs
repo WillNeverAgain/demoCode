@@ -3,6 +3,7 @@ using Tile.Base;
 using Tile.Interface.Base;
 using Tile.SO;
 using Tile.TillCell;
+using Tool;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 namespace Tile.Factory
@@ -11,14 +12,24 @@ namespace Tile.Factory
     {
         private Transform gridTransform;
         private GameObject tilePrefab;
+        
+        private ArgumentParser argumentParser;
+
+        public UnityGridCellFactory()
+        {
+            argumentParser = new ArgumentParser();
+            argumentParser.SettingArguments<Transform>();
+            argumentParser.SettingArguments<GameObject>();
+        }
+        
         /// <param name="args">
         /// @arg0 gridTransform \\
         ///  @arg1 tilePrefab \\
         /// </param>
         public void Initialize(params object[] args)
         {
-            gridTransform = args[0] as Transform;
-            tilePrefab = args[1] as GameObject;
+            gridTransform = argumentParser.ParserArguments<Transform>(args[0]);
+            tilePrefab = argumentParser.ParserArguments<GameObject>(args[1]);
         }
         public GameObject CreateCell(ICreateCellInfo infoSo)
         {

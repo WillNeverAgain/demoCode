@@ -1,8 +1,11 @@
 ﻿using System;
+using System.Text;
+using Range;
 using Tile;
 using Tile.Base;
 using Tile.Context;
 using Tile.Factory;
+using Tile.Middleware;
 using Tile.Middleware.Factory;
 using Tile.Model;
 using Tile.View;
@@ -17,37 +20,31 @@ namespace UniTest.Demo1
         private Grid _grid;
         [SerializeField]
         private GameObject _tilePrefab;
+        private ICellRangeMapMiddleware _mapMiddleware;
         private void Awake()
         {
             Init();
         }
         private void Init()
         {
-            IGameMapPositionContext positionContext = new UnityGridTilePositionContext(_grid);
-            positionContext.Initialize(Vector3.zero);
-            ICellFactory factory = new UnityGridCellFactory();
-            factory.Initialize(_grid.transform,_tilePrefab);
-            IGameMapRefreshContext refreshContext = new SimpleRefreshContext();
-            refreshContext.Initialize(factory,positionContext);
-
-            IGameMapModel teModel = new StaticFourGridTileModel();
-            teModel.Initialize();
-            
-            IGameMapView mapView = new UnityGridTileView();
-            mapView.Initialize(teModel, refreshContext);
-
-            IMiddlewareFactory middlewareFactory = new SimpleMiddlewareFactory();
-            middlewareFactory.Connect(teModel);
-                
-            _tileMapSystem = new UnityGridTileMapSystem(
-                teModel,
-                mapView,
-                middlewareFactory);
-        }
+            _tileMapSystem = new UnityGridTileMapSystem();
+            _tileMapSystem.Initialize(_grid, _tilePrefab);
+            _mapMiddleware = _tileMapSystem.GetMiddleware<ICellRangeMapMiddleware>();
+        }   
         private void Update()
         {
             _tileMapSystem.Update(Time.deltaTime);
-            //TODO: 中间件测试
+            if (Input.GetMouseButtonDown(0))
+            {
+                var ps = Camera.main.ScreenToWorldPoint( Input.mousePosition);
+                var res= _mapMiddleware.GetCellWithTagInRange(ps, (a) => true, new TestRangeArrayInfo().Initialize());
+                StringBuilder temp=new StringBuilder();
+                foreach (var c in res)
+                {
+                    temp.Append( $" CellPos :  {c.CellPosition} \n") ;
+                }
+                Debug.Log(temp.ToString());
+            }
         }
     }
 }

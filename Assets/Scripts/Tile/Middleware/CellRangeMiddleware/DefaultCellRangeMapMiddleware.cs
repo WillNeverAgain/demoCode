@@ -7,23 +7,24 @@ using Tile.Base;
 using UnityEngine;
 namespace Tile.Middleware.CellRangeMiddleware
 {
-    public class DefaultCellRangeMiddleware : ICellRangeMiddleware
+    public class DefaultCellRangeMapMiddleware : ICellRangeMapMiddleware
     {
 
-        private IGameMapModel _model;
+        private IGameMapObjectContext _model;
         private IMapContextGetter _context;
 
         private IGameMapPositionContext _mapPositionContext;
-        public void Connect(IGameMapModel model, IMapContextGetter mapContextGetter)
+        public IMapMiddleware Connect(IMapContextGetter blackboard)
         {
-            _model = model;
-            _context = mapContextGetter;
-            _mapPositionContext = mapContextGetter.GetContext<IGameMapPositionContext>();
+            _context = blackboard;
+            _model = blackboard.GetContext<IGameMapObjectContext>();
+            _mapPositionContext = blackboard.GetContext<IGameMapPositionContext>();
+            return this;
         }
-        public IMiddleware CloneMiddleware()
+        public IMapMiddleware CloneMiddleware()
         {
-             var temp=new DefaultCellRangeMiddleware();
-             temp.Connect(_model,_context);
+             var temp=new DefaultCellRangeMapMiddleware();
+             temp.Connect(_context);
              return temp;
         }
         public IReadOnlyList<ITagObject> FindObjectWithTagInRange(Vector3 findPosition, Func<IList<string>,bool> tagCharger, IRangeArrayInfo rangeArrayInfo)

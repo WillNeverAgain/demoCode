@@ -31,7 +31,7 @@ namespace Tile.Context
         }
         public Vector3 LogicPosToWorld(Vector2 pos)
         {
-            return grid.LocalToWorld(pos)+tempWorldOffset ;
+            return  new Vector3(pos.x,pos.y)+tempWorldOffset ;
         }
         public Vector2 CellPosToLogic(Vector2Int pos)
         {
@@ -48,7 +48,8 @@ namespace Tile.Context
         }
         public Vector2Int WorldPosToCell(Vector3 worldPos)
         {
-            return LogicPosToCell(WorldPosToLogic(worldPos));
+            Vector3Int temp = grid.WorldToCell(worldPos);
+            return new Vector2Int( temp.x,temp.y);
         }
     }
 }

@@ -14,7 +14,7 @@ namespace UniTest.Demo1
 
         public int MaxLayer => 2;
         public int MaxGroup => 1;
-        public void Initialize(params string[] args)
+        public IRangeArrayInfo Initialize(params string[] args)
         {
             ranges=new List<IRangeData>();
             ranges.Add(new RangeData()
@@ -47,6 +47,7 @@ namespace UniTest.Demo1
                 groupID = 0,
                 offset = Vector2Int.down,
             });
+            return this;
         }
         public IReadOnlyList<Vector2Int> GetLayerRanges(int layer)
         {
@@ -58,7 +59,7 @@ namespace UniTest.Demo1
         }
         public IReadOnlyList<Vector2Int> GetRanges(int layer, int group)
         {
-            return ranges.Where(val=>val.GroupID==group && val.LayerID==layer).Select(te=>te.Offset).ToList();
+            return ranges.Where(val=>val.GroupID==group && val.LayerID==layer)?.Select(te=>te.Offset)?.ToList();
 
         }
         public IReadOnlyList<Vector2Int> GetAllRanges()

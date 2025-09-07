@@ -19,7 +19,7 @@ namespace Range.Interface
         public int MaxLayer { get; }
         public int MaxGroup { get; }
 
-        public void Initialize(params string[] args);
+        public IRangeArrayInfo Initialize(params string[] args);
         /// <summary>
         /// 获得某一层的所有范围
         /// </summary>

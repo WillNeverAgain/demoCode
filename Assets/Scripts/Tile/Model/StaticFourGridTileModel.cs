@@ -21,7 +21,7 @@ namespace Tile.Model
             _gameTileCells = new IGameTileCell[,]
             {
                 {
-                    new GroundCell(), new GroundCell() , new GroundCell() , new GroundCell() , new GroundCell(),
+                    new DarkCell(), new GroundCell() , new GroundCell() , new GroundCell() , new GroundCell(),
                     new GroundCell(), new GroundCell() , new GroundCell() , new GroundCell() , new GroundCell()
                 },
                 {
@@ -69,7 +69,9 @@ namespace Tile.Model
         public int MapHight => _cell_high;
         public IGameTileCell GetCell(int x, int y)
         {
-            if (x+y*_cell_wide >= _gameTileCells.Length)
+            if (x+y*_cell_wide > _gameTileCells.Length || 
+                x<0 || y<0
+                || x>= _cell_wide || y>= _cell_high)
             {
                 return   DefaultCell;
             }

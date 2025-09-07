@@ -9,7 +9,7 @@ namespace Tile.Middleware
     /// <summary>
     /// 通过这个中间件实现访问信息的获取
     /// </summary>
-    public interface ICellRangeMiddleware : IMiddleware
+    public interface ICellRangeMapMiddleware : IMapMiddleware
     {
         /// <summary>
         ///  获得范围内满足条件的cell

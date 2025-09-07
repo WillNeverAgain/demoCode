@@ -4,7 +4,7 @@ using UnityEngine;
 namespace Tile.Middleware
 {
     //TODO： 暂定
-    public interface IGameTileMovementMiddleware : IMiddleware
+    public interface IGameTileMovementMapMiddleware : IMapMiddleware
     {
         /// <summary>
         /// 检测能否移动到对应的位置

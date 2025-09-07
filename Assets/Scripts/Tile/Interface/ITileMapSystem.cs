@@ -8,27 +8,19 @@ namespace Tile
     /// 向外开发 
     /// 提供中间件获取通道
     /// </summary>
-    public interface ITileMapSystem
+    public interface ITileMapSystem: IMiddlewareGetter
     {
-        public ITileMapSystem Initialize(params string[] args);
+        /// <summary>
+        /// 接口定义基础的功能
+        /// 如果要对接转换器可以在类里面实现
+        /// </summary>
+        public ITileMapSystem Initialize(params object[] args);
         public void Update(float deltaTime);
     }
-    public interface IMapObjectGetter
-    {
-        /// <summary>
-        /// 获得地板
-        /// </summary>
-        public IGameTileCell GetCell(int x, int y);
-        public IGameTileCell GetCell(Vector2Int logicalPosition);
-        /// <summary>
-        /// 获得物体
-        /// </summary>
-        public IList<IGameTileObject> GetObjects(int x, int y);
-        public IList<IGameTileObject> GetObjects(Vector2Int logicalPosition);
-    }
+
     public interface IMiddlewareGetter
     {
-        public T GetMiddleware<T>() where T : IMiddleware;
+        public T GetMiddleware<T>() where T : IMapMiddleware;
     }
     public interface IMapContextGetter
     {

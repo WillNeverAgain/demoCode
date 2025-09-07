@@ -2,8 +2,7 @@
 {
     public interface IMiddlewareFactory 
     {
-        public IMiddlewareFactory Initialize(params object[] args);
-        public void Connect(IGameMapModel middlewareModel);
-        public T GetMiddleware<T>() where T : IMiddleware;
+        public IMiddlewareFactory Initialize(IMapContextBlackboard middlewareModel,params object[] args);
+        public T GetMiddleware<T>() where T : IMapMiddleware;
     }
 }

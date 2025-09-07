@@ -22,9 +22,13 @@ namespace Tile
             _mapView=view;
             _middlewareFactory=factory;
             //链接上数据
-            factory.Connect(model);
+            // factory.Connect(model);
         }
-        public ITileMapSystem Initialize(params string[] args)
+        public T GetMiddleware<T>() where T : IMapMiddleware
+        {
+            return _middlewareFactory.GetMiddleware<T>();
+        }
+        public ITileMapSystem Initialize(params object[] args)
         {
             IGameMapPositionContext positionContext = new RhombusGridTilePositionContext();
             ICellFactory factory = new SimpleTIleCellFactory();
@@ -32,10 +36,6 @@ namespace Tile
             refreshContext.Initialize(factory,positionContext);
             _mapView.Initialize(_gameMapModel,refreshContext);
             return this;
-        }
-        public T GetMiddleware<T>() where T : IMiddleware
-        {
-            return _middlewareFactory.GetMiddleware<T>();
         }
         public void Update(float deltaTime)
         {

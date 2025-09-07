@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Tile.Base;
+using Tile.Middleware.CellRangeMiddleware;
 namespace Tile.Middleware.Factory
 {
     /// <summary>
@@ -9,21 +10,19 @@ namespace Tile.Middleware.Factory
     /// </summary>
     public class SimpleMiddlewareFactory : IMiddlewareFactory
     {
-        private IGameMapModel _model;
-        private Dictionary<Type, IMiddleware> _middlewares = new Dictionary<Type, IMiddleware>();
-        public IMiddlewareFactory Initialize(params object[] args)
+        private IMapContextBlackboard _blackboard;
+        private Dictionary<Type, IMapMiddleware> _middlewares = new Dictionary<Type, IMapMiddleware>();
+        public IMiddlewareFactory Initialize(IMapContextBlackboard middlewareModel, params object[] args)
         {
+            _blackboard = middlewareModel;
+            _middlewares.Add(typeof(ICellRangeMapMiddleware),new DefaultCellRangeMapMiddleware().Connect(_blackboard));
             return this;
         }
-        public void Connect(IGameMapModel middlewareModel)
-        {
-            _model = middlewareModel;
-        }
-        public T GetMiddleware<T>() where T : IMiddleware
+        public T GetMiddleware<T>() where T : IMapMiddleware
         {
             if (_middlewares.ContainsKey(typeof(T)))
                 return (T)_middlewares[typeof(T)].CloneMiddleware();
-            return default(T);
+            throw new NullReferenceException($"No middleware registered for {typeof(T)}");
         }
     }
 }
