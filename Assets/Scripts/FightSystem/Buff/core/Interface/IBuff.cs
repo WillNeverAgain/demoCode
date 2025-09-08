@@ -3,25 +3,19 @@
 //Version : 0.1
 //UnityVersion : 2022.3.62f1c1
 
-public interface IBuff
-{
-    public IBuffId Id { get; }
-    public string Name { get; }
-    public IBuffStack Stack { get; }
-    public IBuffOwner Owner { get; }
-    public IBuffOwner Source {  get; }
-}
-public interface IBuffOwner
-{
+using System.Collections.Generic;
 
-}
-public interface IBuffId
+namespace MyFrame.FightSystem.Buff
 {
-    public long GetId();
-}
-public interface IBuffStack
-{
-    public int GetCount();
-    public bool AddStack(int value);
-    public bool SetStack(int value);
+    public interface IBuff
+    {
+        public IBuffId Id { get; }
+        public string Name { get; }
+        public IReadOnlyList<IBuffTrigger> Triggers { get; }
+        public IReadOnlyList<BuffTag> Tags { get; }
+        public IBuffStackPolicy StackPolicy { get; }
+        public IDuration Duration { get; }
+        public IReadOnlyList<IBuffEffectNode> Effects { get; }
+
+    }
 }

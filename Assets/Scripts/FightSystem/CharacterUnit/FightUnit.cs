@@ -28,7 +28,6 @@ namespace MyFrame.FightSystem.Unit
     {
         public FightObjectType TargetType { get; }
         public ReadOnlyDictionary<AttributeType, AttributeDataUnit<StatContext>> GetAttributeValue();
-        public IGameMap _map { get; }
         public List<IValueModifier<T>> GetModifiers<T>() where T : IValueContext;
         public void AddModifier(AttributeType type, IValueModifier<StatContext> modifier);
         public void RemoveModifier(AttributeType type, IValueModifier<StatContext> modifier);
