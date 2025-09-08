@@ -7,8 +7,9 @@ using Tile.Base;
 using UnityEngine;
 namespace Tile.Middleware.CellRangeMiddleware
 {
-    public class DefaultCellRangeMapMiddleware : ICellRangeMapMiddleware
+    public class DefaultMapCellRangeMiddleware : IMapCellRangeMiddleware
     {
+
 
         private IGameMapObjectContext _model;
         private IMapContextGetter _context;
@@ -23,11 +24,14 @@ namespace Tile.Middleware.CellRangeMiddleware
         }
         public IMapMiddleware CloneMiddleware()
         {
-             var temp=new DefaultCellRangeMapMiddleware();
+             var temp=new DefaultMapCellRangeMiddleware();
              temp.Connect(_context);
              return temp;
         }
-        public IReadOnlyList<ITagObject> FindObjectWithTagInRange(Vector3 findPosition, Func<IList<string>,bool> tagCharger, IRangeArrayInfo rangeArrayInfo)
+        
+        /// <param name="blockCharger">阻塞开启(如果不满足会被剔除轮询队列)</param>
+        public IReadOnlyList<ITagObject> GetObjectWithTagInRange(
+            Vector3 findPosition, Func<IList<string>,bool> tagCharger, IRangeArrayInfo rangeArrayInfo)
         {
             
             var  pos= _mapPositionContext.WorldPosToCell(findPosition);
@@ -36,7 +40,7 @@ namespace Tile.Middleware.CellRangeMiddleware
             {
                 for (int j = 0; j < rangeArrayInfo.MaxGroup; j++)
                 {
-                    //获取不存在阻塞条件
+                    
                     var ls= rangeArrayInfo.GetRanges(i, j);
                     foreach (var posOffset in ls)
                     {
@@ -57,7 +61,6 @@ namespace Tile.Middleware.CellRangeMiddleware
         {
             List<IGameTileCell> cellsList = new List<IGameTileCell>();
             var  pos= _mapPositionContext.WorldPosToCell(findPosition);
-            List<ITagObject> objects = new List<ITagObject>();
             for (int i = 0; i < rangeArrayInfo.MaxLayer; i++)
             {
                 for (int j = 0; j < rangeArrayInfo.MaxGroup; j++)
@@ -69,7 +72,7 @@ namespace Tile.Middleware.CellRangeMiddleware
                         var objTemps= _model.GetCell(pos + posOffset);
                         if (tagCharger.Invoke(objTemps.Tags))
                         {
-                                objects.Add(objTemps);
+                            cellsList.Add(objTemps);
                         }
                     }
                 }
@@ -80,13 +83,13 @@ namespace Tile.Middleware.CellRangeMiddleware
         {
             return GetCellWithTagInRange(findPosition,tagCharger,new DefaultRangeArrayInfo(rangeArray));
         }
-        public IReadOnlyList<ITagObject> FindObjectWithTagInRange(Vector3 findPosition, string tag, IRangeArrayInfo rangeArrayInfo)
+        public IReadOnlyList<ITagObject> GetObjectWithTagInRange(Vector3 findPosition, string tag, IRangeArrayInfo rangeArrayInfo)
         {
-           return FindObjectWithTagInRange(findPosition,t=>t.Contains(tag),rangeArrayInfo);
+           return GetObjectWithTagInRange(findPosition,t=>t.Contains(tag),rangeArrayInfo);
         }
-        public IReadOnlyList<ITagObject> FindObjectWithTagInRange(Vector3 findPosition, Func<IList<string>,bool> tagCharger, IEnumerable<Vector2Int> rangeArray)
+        public IReadOnlyList<ITagObject> GetObjectWithTagInRange(Vector3 findPosition, Func<IList<string>,bool> tagCharger, IEnumerable<Vector2Int> rangeArray)
         {
-            return FindObjectWithTagInRange(findPosition,tagCharger,new DefaultRangeArrayInfo(rangeArray));
+            return GetObjectWithTagInRange(findPosition,tagCharger,new DefaultRangeArrayInfo(rangeArray));
         }
     }
 }

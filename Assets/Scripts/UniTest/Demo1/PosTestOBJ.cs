@@ -13,7 +13,7 @@ namespace UniTest.Demo1
         void Start()
         {
             _context= new UnityGridTilePositionContext(_grid);
-            _context.Initialize(new Vector3(1,0,0));
+            _context.Initialize(new Vector3(0.5f,0,0));
         }
         private class WorldTestData
         {

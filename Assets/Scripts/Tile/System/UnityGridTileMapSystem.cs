@@ -39,7 +39,7 @@ namespace Tile
             IMapContextBlackboard blackboard = new DefaultMapContextBlackboard();
             
             IGameMapPositionContext positionContext = new UnityGridTilePositionContext(_grid);
-            positionContext.Initialize(Vector3.zero);
+            positionContext.Initialize(new Vector3(0.5f, 0));
             
             blackboard.RegisterContext<IGameMapPositionContext>(positionContext);
             
@@ -62,6 +62,9 @@ namespace Tile
 
             IMiddlewareFactory middlewareFactory = new SimpleMiddlewareFactory();
             middlewareFactory.Initialize(blackboard);
+            
+            
+            
             
             _gameMapModel = teModel;
             _middlewareFactory = middlewareFactory;

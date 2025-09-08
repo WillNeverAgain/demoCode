@@ -22,39 +22,111 @@ namespace Tile.Model
             {
                 {
                     new DarkCell(), new GroundCell() , new GroundCell() , new GroundCell() , new GroundCell(),
+                    new GroundCell(), new GroundCell() , new GroundCell() , new GroundCell() , new GroundCell(),
+                    new DarkCell(), new GroundCell() , new GroundCell() , new GroundCell() , new GroundCell(),
                     new GroundCell(), new GroundCell() , new GroundCell() , new GroundCell() , new GroundCell()
                 },
                 {
                     new GroundCell(), new GroundCell() , new GroundCell() , new GroundCell() , new GroundCell(),
+                    new GroundCell(), new GroundCell() , new GroundCell() , new GroundCell() , new GroundCell(),
+                    new DarkCell(), new GroundCell() , new GroundCell() , new GroundCell() , new GroundCell(),
                     new GroundCell(), new GroundCell() , new GroundCell() , new GroundCell() , new GroundCell()
                 },
                            {
-                    new GroundCell(), new GroundCell() , new GroundCell() , new GroundCell() , new GroundCell(),
+                               new GroundCell(), new GroundCell() , new DarkCell() , new GroundCell() , new GroundCell(),
+                               new GroundCell(), new GroundCell() , new GroundCell() , new GroundCell() , new GroundCell(),
+                               new DarkCell(), new DarkCell() , new GroundCell() , new GroundCell() , new GroundCell(),
+                               new GroundCell(), new GroundCell() , new GroundCell() , new GroundCell() , new GroundCell()
+                },
+                           {
+                         new GroundCell(), new GroundCell() , new DarkCell() , new GroundCell() , new GroundCell(),
+                    new GroundCell(), new DarkCell() , new GroundCell() , new GroundCell() , new GroundCell(),
+                    new DarkCell(), new DarkCell() , new DarkCell() , new GroundCell() , new GroundCell(),
                     new GroundCell(), new GroundCell() , new GroundCell() , new GroundCell() , new GroundCell()
                 },
                            {
+                         new DarkCell(), new GroundCell() , new GroundCell() , new GroundCell() , new GroundCell(),
                     new GroundCell(), new GroundCell() , new GroundCell() , new GroundCell() , new GroundCell(),
+                    new DarkCell(), new DarkCell() , new GroundCell() , new GroundCell() , new GroundCell(),
+                    new GroundCell(), new GroundCell() , new GroundCell() , new DarkCell() , new GroundCell()
+                },
+                           {
+                         new GroundCell(), new GroundCell() , new GroundCell() , new GroundCell() , new GroundCell(),
+                    new GroundCell(), new DarkCell() , new DarkCell() , new GroundCell() , new GroundCell(),
+                    new DarkCell(), new GroundCell() , new GroundCell() , new GroundCell() , new GroundCell(),
+                    new DarkCell(), new GroundCell() , new GroundCell() , new GroundCell() , new GroundCell()
+                },
+                           {
+                         new GroundCell(), new GroundCell() , new GroundCell() , new GroundCell() , new GroundCell(),
+                    new GroundCell(), new DarkCell() , new DarkCell() , new GroundCell() , new GroundCell(),
+                    new DarkCell(), new GroundCell() , new GroundCell() , new DarkCell() , new GroundCell(),
                     new GroundCell(), new GroundCell() , new GroundCell() , new GroundCell() , new GroundCell()
                 },
                            {
+                         new DarkCell(), new GroundCell() , new GroundCell() , new GroundCell() , new GroundCell(),
+                    new GroundCell(), new DarkCell() , new GroundCell() , new DarkCell() , new DarkCell(),
+                    new DarkCell(), new GroundCell() , new GroundCell() , new GroundCell() , new GroundCell(),
+                    new GroundCell(), new GroundCell() , new DarkCell() , new GroundCell() , new GroundCell()
+                },
+                           {
+                         new GroundCell(), new GroundCell() , new DarkCell() , new GroundCell() , new DarkCell(),
+                    new GroundCell(), new DarkCell() , new GroundCell() , new GroundCell() , new GroundCell(),
                     new GroundCell(), new GroundCell() , new GroundCell() , new GroundCell() , new GroundCell(),
+                    new GroundCell(), new GroundCell() , new GroundCell() , new DarkCell() , new DarkCell()
+                },
+                                 {
+                    new DarkCell(), new GroundCell() , new GroundCell() , new GroundCell() , new GroundCell(),
+                    new GroundCell(), new GroundCell() , new GroundCell() , new GroundCell() , new GroundCell(),
+                    new DarkCell(), new GroundCell() , new GroundCell() , new GroundCell() , new GroundCell(),
+                    new GroundCell(), new GroundCell() , new GroundCell() , new GroundCell() , new GroundCell()
+                },
+                {
+                    new GroundCell(), new GroundCell() , new GroundCell() , new GroundCell() , new GroundCell(),
+                    new GroundCell(), new GroundCell() , new GroundCell() , new GroundCell() , new GroundCell(),
+                    new DarkCell(), new GroundCell() , new GroundCell() , new GroundCell() , new GroundCell(),
                     new GroundCell(), new GroundCell() , new GroundCell() , new GroundCell() , new GroundCell()
                 },
                            {
-                    new GroundCell(), new GroundCell() , new GroundCell() , new GroundCell() , new GroundCell(),
+                               new GroundCell(), new GroundCell() , new DarkCell() , new GroundCell() , new GroundCell(),
+                               new GroundCell(), new GroundCell() , new GroundCell() , new GroundCell() , new GroundCell(),
+                               new DarkCell(), new DarkCell() , new GroundCell() , new GroundCell() , new GroundCell(),
+                               new GroundCell(), new GroundCell() , new GroundCell() , new GroundCell() , new GroundCell()
+                },
+                           {
+                         new GroundCell(), new GroundCell() , new DarkCell() , new GroundCell() , new GroundCell(),
+                    new GroundCell(), new DarkCell() , new GroundCell() , new GroundCell() , new GroundCell(),
+                    new DarkCell(), new DarkCell() , new DarkCell() , new GroundCell() , new GroundCell(),
                     new GroundCell(), new GroundCell() , new GroundCell() , new GroundCell() , new GroundCell()
                 },
                            {
+                         new DarkCell(), new GroundCell() , new GroundCell() , new GroundCell() , new GroundCell(),
                     new GroundCell(), new GroundCell() , new GroundCell() , new GroundCell() , new GroundCell(),
+                    new DarkCell(), new DarkCell() , new GroundCell() , new GroundCell() , new GroundCell(),
+                    new GroundCell(), new GroundCell() , new GroundCell() , new DarkCell() , new GroundCell()
+                },
+                           {
+                         new GroundCell(), new GroundCell() , new GroundCell() , new GroundCell() , new GroundCell(),
+                    new GroundCell(), new DarkCell() , new DarkCell() , new GroundCell() , new GroundCell(),
+                    new DarkCell(), new GroundCell() , new GroundCell() , new GroundCell() , new GroundCell(),
+                    new DarkCell(), new GroundCell() , new GroundCell() , new GroundCell() , new GroundCell()
+                },
+                           {
+                         new GroundCell(), new GroundCell() , new GroundCell() , new GroundCell() , new GroundCell(),
+                    new GroundCell(), new DarkCell() , new DarkCell() , new GroundCell() , new GroundCell(),
+                    new DarkCell(), new GroundCell() , new GroundCell() , new DarkCell() , new GroundCell(),
                     new GroundCell(), new GroundCell() , new GroundCell() , new GroundCell() , new GroundCell()
                 },
                            {
-                    new GroundCell(), new GroundCell() , new GroundCell() , new GroundCell() , new GroundCell(),
-                    new GroundCell(), new GroundCell() , new GroundCell() , new GroundCell() , new GroundCell()
+                         new DarkCell(), new GroundCell() , new GroundCell() , new GroundCell() , new GroundCell(),
+                    new GroundCell(), new DarkCell() , new GroundCell() , new DarkCell() , new DarkCell(),
+                    new DarkCell(), new GroundCell() , new GroundCell() , new GroundCell() , new GroundCell(),
+                    new GroundCell(), new GroundCell() , new DarkCell() , new GroundCell() , new GroundCell()
                 },
                            {
+                         new GroundCell(), new GroundCell() , new DarkCell() , new GroundCell() , new DarkCell(),
+                    new GroundCell(), new DarkCell() , new GroundCell() , new GroundCell() , new GroundCell(),
                     new GroundCell(), new GroundCell() , new GroundCell() , new GroundCell() , new GroundCell(),
-                    new GroundCell(), new GroundCell() , new GroundCell() , new GroundCell() , new GroundCell()
+                    new GroundCell(), new GroundCell() , new GroundCell() , new DarkCell() , new DarkCell()
                 },
             };
             return this;

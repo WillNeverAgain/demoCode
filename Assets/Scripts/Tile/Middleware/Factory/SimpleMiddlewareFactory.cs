@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Tile.Base;
 using Tile.Middleware.CellRangeMiddleware;
+using Tile.Middleware.MapPositionTransMiddleware;
 namespace Tile.Middleware.Factory
 {
     /// <summary>
@@ -15,7 +16,8 @@ namespace Tile.Middleware.Factory
         public IMiddlewareFactory Initialize(IMapContextBlackboard middlewareModel, params object[] args)
         {
             _blackboard = middlewareModel;
-            _middlewares.Add(typeof(ICellRangeMapMiddleware),new DefaultCellRangeMapMiddleware().Connect(_blackboard));
+            _middlewares.Add(typeof(IMapCellRangeMiddleware),new DefaultMapCellRangeMiddleware().Connect(_blackboard));
+            _middlewares.Add(typeof(IMapPositionTransMiddleware),new DefaultMapPositionTransMiddleware().Connect(_blackboard));
             return this;
         }
         public T GetMiddleware<T>() where T : IMapMiddleware

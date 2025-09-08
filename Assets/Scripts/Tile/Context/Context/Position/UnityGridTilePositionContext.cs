@@ -23,7 +23,7 @@ namespace Tile.Context
         {
             logicalOffset=wordOffset;
             cellOffset=new Vector2Int( grid.WorldToCell(wordOffset).x,grid.WorldToCell(wordOffset).y);
-            tempWorldOffset=new Vector3(wordOffset.x+xLength/2f,wordOffset.y,0);
+            tempWorldOffset=new Vector3(wordOffset.x,wordOffset.y,0);
         }
         public Vector2Int LogicPosToCell(Vector2 position)
         {

@@ -33,6 +33,12 @@ namespace UniTest.Demo1
             {
                 layerID = 1,
                 groupID = 0,
+                offset = Vector2Int.left*2,
+            });
+            ranges.Add(new RangeData()
+            {
+                layerID = 1,
+                groupID = 0,
                 offset = Vector2Int.right,
             });
             ranges.Add(new RangeData()

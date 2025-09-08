@@ -11,9 +11,8 @@ namespace Tile.TillCell.Demo1
     public class DarkCell : IGameTileCell
     {
 
-        public IList<string> Tags {
-            get;
-        }
+        public IList<string> Tags => _tags;
+        private List<string> _tags=new List<string>();
 
         void IGameTileCell.Render(int x, int y, IGameMapRefreshContext tileObject)
         {
