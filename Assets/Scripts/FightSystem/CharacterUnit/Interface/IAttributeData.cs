@@ -10,7 +10,7 @@ using System.Collections.ObjectModel;
 public interface IAttributeData<T> where T : IValueContext
 {
     public ReadOnlyDictionary<AttributeType, AttributeDataUnit<T>> GetValue();
-    public bool SetValue(AttributeType type , float value , List<string> report);
+    public bool SetValue(AttributeType type , float value);
     public bool AddModifier(AttributeType type, IValueModifier<T> modifier);
     public bool RemoveModifier(AttributeType type, IValueModifier<T> modifier);
     public bool GetDirty(out List<AttributeDataUnit<T>> next_attributes);

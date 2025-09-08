@@ -29,7 +29,7 @@ namespace MyFrame.FightSystem.Unit
                 foreach(AttributeDataUnit<StatContext> next_attribute in next_attributes)
                 {
                     ValueBreakdown bd = _valueCalculator.Compute(ctx, next_attribute.ValueModifiers, next_attribute.Base);
-                    data.SetValue(next_attribute.Type, bd.Result, bd.Notes);
+                    data.SetValue(next_attribute.Type, bd.Result);
                     count++;
                 }
                 ctx.UnitAttribute = data.GetValue();

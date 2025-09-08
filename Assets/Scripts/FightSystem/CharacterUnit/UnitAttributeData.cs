@@ -36,7 +36,7 @@ public class UnitAttributeData : IAttributeData<StatContext>
 
 
 
-    public bool SetValue(AttributeType type, float value, List<string> report)
+    public bool SetValue(AttributeType type, float value)
     {
         if (!_data.ContainsKey(type)) { return false;}
         if(value != _data[type].Value) {_dirty = true;}

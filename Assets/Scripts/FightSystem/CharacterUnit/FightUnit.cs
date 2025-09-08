@@ -30,6 +30,9 @@ namespace MyFrame.FightSystem.Unit
         public ReadOnlyDictionary<AttributeType, AttributeDataUnit<StatContext>> GetAttributeValue();
         public IGameMap _map { get; }
         public List<IValueModifier<T>> GetModifiers<T>() where T : IValueContext;
+        public void AddModifier(AttributeType type, IValueModifier<StatContext> modifier);
+        public void RemoveModifier(AttributeType type, IValueModifier<StatContext> modifier);
+        public void SetAttributeValue(AttributeType type,float value);
     }
 
     public class FightObject : IFightObject
@@ -57,6 +60,20 @@ namespace MyFrame.FightSystem.Unit
         public List<IValueModifier<T>> GetModifiers<T>() where T : IValueContext
         {
             return new List<IValueModifier<T>>();
+        }
+
+        public void AddModifier(AttributeType type, IValueModifier<StatContext> modifier)
+        {
+            attribute.AddModifier(type, modifier);
+        }
+
+        public void RemoveModifier(AttributeType type, IValueModifier<StatContext> modifier)
+        {
+            attribute.RemoveModifier(type, modifier);
+        }
+        public void SetAttributeValue(AttributeType type,float value)
+        {
+            attribute.SetValue(type, value);
         }
     }
 

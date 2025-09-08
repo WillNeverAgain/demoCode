@@ -22,6 +22,11 @@ namespace MyFrame.FightSystem.Unit
             _last = last;
         }
 
+        public void AddModifier(AttributeType type,IValueModifier<StatContext> valueModifier)
+        {
+            _data.AddModifier(type, valueModifier);
+        }
+
         /// <summary>
         /// 获取值，同时更新属性表，传入的ctx不需要包含属性表
         /// </summary>
@@ -37,6 +42,17 @@ namespace MyFrame.FightSystem.Unit
 
             return _last;
         }
+
+        public void RemoveModifier(AttributeType type,IValueModifier<StatContext> valueModifier)
+        {
+            _data.RemoveModifier(type, valueModifier);
+        }
+
+        public void SetValue(AttributeType type, float value)
+        {
+            _data.SetValue(type, value);
+        }
+
         /// <summary>
         /// 计算脏标记，决定是否重算
         /// </summary>
