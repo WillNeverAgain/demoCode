@@ -1,5 +1,4 @@
-﻿using System;
-using Tile.Base;
+﻿using Tile.Base;
 using UnityEngine;
 namespace Tile.Context
 {
