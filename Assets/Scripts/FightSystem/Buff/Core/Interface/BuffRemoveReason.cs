@@ -3,12 +3,10 @@
 //Version : 0.1
 //UnityVersion : 2022.3.62f1c1
 
-#nullable enable
 namespace MyFrame.FightSystem.Buff
 {
-    public interface IBuffId
+    public enum BuffRemoveReason
     {
-        public string? GetId(IBuff buff);
-        public string? GenerateId(IBuff buff);
+        Expired
     }
 }

@@ -20,11 +20,14 @@ namespace MyFrame.FightSystem.Calculator
         {
             get;
         }
+        public IBlackBoard blackBoard { get; }
+        
 
-        public DamageContext(ISkillExecuter attacker, ISkillTarget defenser)
+        public DamageContext(ISkillExecuter attacker, ISkillTarget defenser, IBlackBoard blackBoard)
         {
             Attacker = attacker;
             Defenser = defenser;
+            this.blackBoard = blackBoard;
         }
     }
 

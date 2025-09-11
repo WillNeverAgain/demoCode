@@ -7,5 +7,6 @@ namespace MyFrame.FightSystem.Buff
 {
     public enum BuffStackOp
     {
+        Ignore,
     }
 }

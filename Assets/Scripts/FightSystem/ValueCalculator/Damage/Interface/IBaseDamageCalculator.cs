@@ -9,7 +9,5 @@ using System.Collections.ObjectModel;
 
 public interface IBaseDamageCalculator
 {
-    public float Compute(ReadOnlyDictionary<AttributeType, AttributeDataUnit<StatContext>> unit_attribute,
-        ReadOnlyDictionary<AttributeType, AttributeDataUnit<StatContext>> target_attribute,
-        AttackType attack_type);
+    public ValueBreakdown Compute(BaseDamageConfig config);
 }

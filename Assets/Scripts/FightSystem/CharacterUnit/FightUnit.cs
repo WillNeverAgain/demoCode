@@ -3,6 +3,7 @@
 //Version : 0.1
 //UnityVersion : 2022.3.62f1c1
 
+using MyFrame.FightSystem.Buff;
 using MyFrame.FightSystem.Calculator;
 using MyFrame.FightSystem.Skill;
 using System.Collections.Generic;
@@ -11,7 +12,7 @@ using Unity.VisualScripting;
 
 namespace MyFrame.FightSystem.Unit
 {
-    public class FightUnit : FightObject,ISkillTarget, ISkillExecuter
+    public class FightUnit : FightObject,ISkillTarget, ISkillExecuter,IBuffOwner
     {
         public bool WhenSelected(SkillContext sctx)
         {
@@ -21,16 +22,27 @@ namespace MyFrame.FightSystem.Unit
         {
             return skill.Execute(sctx, aim);
         }
+
+        public void OnBuffAttached(IBuffInstance buff)
+        {
+            return;
+        }
+
+        public void OnBuffDetached(IBuffInstance buff)
+        {
+            return ;
+        }
     }
 
 
     public interface IFightObject
     {
         public FightObjectType TargetType { get; }
-        public ReadOnlyDictionary<AttributeType, AttributeDataUnit<StatContext>> GetAttributeValue();
+        public float? GetAttributeValue(AttributeType type);
+        public void Damage(float amount);
         public List<IValueModifier<T>> GetModifiers<T>() where T : IValueContext;
-        public void AddModifier(AttributeType type, IValueModifier<StatContext> modifier);
-        public void RemoveModifier(AttributeType type, IValueModifier<StatContext> modifier);
+        public void AddAttributeModifier(AttributeType type, IValueModifier<StatContext> modifier);
+        public void RemoveAttributeModifier(AttributeType type, IValueModifier<StatContext> modifier);
         public void SetAttributeValue(AttributeType type,float value);
     }
 
@@ -39,9 +51,19 @@ namespace MyFrame.FightSystem.Unit
         public FightObjectType TargetType { get; }
         public IGameMap _map { get; }
         private IAttribute<StatContext> attribute;
-        public ReadOnlyDictionary<AttributeType, AttributeDataUnit<StatContext>> GetAttributeValue()
+        public float? GetAttributeValue(AttributeType type)
         {
-            return attribute.GetValue(GetNoneAttibuteStatContext());
+            if (attribute.GetValue(GetNoneAttibuteStatContext()).TryGetValue(type, out var value))
+                return value.Value;
+            return null;
+        }
+        /// <summary>
+        /// ‘›Œ¥ µœ÷
+        /// </summary>
+        /// <param name="amount"></param>
+        public void Damage(float amount)
+        {
+            return;
         }
 
         private StatContext GetNoneAttibuteStatContext()
@@ -51,7 +73,7 @@ namespace MyFrame.FightSystem.Unit
         private StatContext GetStatContext()
         {
             StatContext sctx = GetNoneAttibuteStatContext();
-            sctx.UnitAttribute = GetAttributeValue();
+            sctx.UnitAttribute = attribute.GetValue(GetNoneAttibuteStatContext());
             return sctx;
         }
 
@@ -61,12 +83,12 @@ namespace MyFrame.FightSystem.Unit
             return new List<IValueModifier<T>>();
         }
 
-        public void AddModifier(AttributeType type, IValueModifier<StatContext> modifier)
+        public void AddAttributeModifier(AttributeType type, IValueModifier<StatContext> modifier)
         {
             attribute.AddModifier(type, modifier);
         }
 
-        public void RemoveModifier(AttributeType type, IValueModifier<StatContext> modifier)
+        public void RemoveAttributeModifier(AttributeType type, IValueModifier<StatContext> modifier)
         {
             attribute.RemoveModifier(type, modifier);
         }

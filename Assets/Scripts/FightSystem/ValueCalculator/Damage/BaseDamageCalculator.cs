@@ -6,51 +6,68 @@
 using MyFrame.FightSystem;
 using MyFrame.FightSystem.Calculator;
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Runtime.Serialization;
+using UnityEngine.UI;
 
-public class BaseDamageCalculator : IBaseDamageCalculator
+namespace MyFrame.FightSystem.Skill
 {
-    private const float MIN_ATTACK_RATE = 0.01F;
-    public float Compute(ReadOnlyDictionary<AttributeType, AttributeDataUnit<StatContext>> unit_attribute, 
-        ReadOnlyDictionary<AttributeType, AttributeDataUnit<StatContext>> target_attribute, 
-        AttackType attack_type)
+    public class BaseDamageCalculator : IBaseDamageCalculator
     {
-        float attack_value;
-        float defense_value;
-        switch (attack_type)
+        private readonly float MIN_ATTACK_RATE;
+        private List<IBaseDamageModPolicy> _baseDamageModPolicy;
+        public ValueBreakdown Compute(BaseDamageConfig config)
         {
-            case AttackType.Physics:
-                attack_value = unit_attribute[AttributeType.p_atk].Value;
-                defense_value = target_attribute[AttributeType.p_def].Value;
-                break;
-            case AttackType.Magic:
-                attack_value = unit_attribute[AttributeType.m_atk].Value;
-                defense_value = target_attribute[AttributeType.m_def].Value;
-                break;
-            default:
-                throw new AttackTypeException("wrong attacktype,there must be something wrong with your code");
+            float attack_value;
+            float defense_value;
+            switch (config.AttackType)
+            {
+                case AttackType.Physics:
+                    attack_value = config.SkillExecuter.GetAttributeValue(AttributeType.p_atk).Value;
+                    defense_value = config.SkillTarget.GetAttributeValue(AttributeType.p_def).Value;
+                    break;
+                case AttackType.Magic:
+                    attack_value = config.SkillExecuter.GetAttributeValue(AttributeType.m_atk).Value;
+                    defense_value = config.SkillTarget.GetAttributeValue(AttributeType.m_def).Value;
+                    break;
+                default:
+                    throw new AttackTypeException("wrong attacktype,there must be something wrong with your code");
+            }
+            ValueBreakdown bd = new ValueBreakdown(MathF.Max(attack_value - defense_value, attack_value * MIN_ATTACK_RATE));
+            var bctx = new BaseDamageModContext(config.SkillExecuter.GetAttributeValue(AttributeType.critical_rate).Value, config.DamageRate);
+
+            foreach(var modifier in _baseDamageModPolicy)
+            {
+                bd = modifier.Modify(bd,bctx);
+            }
+            return bd;
+
         }
-        return MathF.Max(attack_value - defense_value, attack_value * MIN_ATTACK_RATE);
-    }
-}
-
-[Serializable]
-internal class AttackTypeException : Exception
-{
-    public AttackTypeException()
-    {
+        public BaseDamageCalculator(float mIN_ATTACK_RATE, List<IBaseDamageModPolicy> baseDamageModPolicy)
+        {
+            MIN_ATTACK_RATE = mIN_ATTACK_RATE;
+            _baseDamageModPolicy = baseDamageModPolicy;
+        }
     }
 
-    public AttackTypeException(string message) : base(message)
+    [Serializable]
+    internal class AttackTypeException : Exception
     {
-    }
+        public AttackTypeException()
+        {
+        }
 
-    public AttackTypeException(string message, Exception innerException) : base(message, innerException)
-    {
-    }
+        public AttackTypeException(string message) : base(message)
+        {
+        }
 
-    protected AttackTypeException(SerializationInfo info, StreamingContext context) : base(info, context)
-    {
+        public AttackTypeException(string message, Exception innerException) : base(message, innerException)
+        {
+        }
+
+        protected AttackTypeException(SerializationInfo info, StreamingContext context) : base(info, context)
+        {
+        }
     }
 }

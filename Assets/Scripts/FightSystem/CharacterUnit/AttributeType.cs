@@ -13,6 +13,7 @@ public enum AttributeType
     p_def,
     m_atk,
     m_def,
+    critical_rate,
     act_order_point,
     move_point,
     act_point_main,

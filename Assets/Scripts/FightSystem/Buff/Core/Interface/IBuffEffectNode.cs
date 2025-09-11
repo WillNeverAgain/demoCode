@@ -7,8 +7,8 @@ namespace MyFrame.FightSystem.Buff
 {
     public interface IBuffEffectNode
     {
-        public BuffEffectReport Excute(BuffContext ctx,EffectScope scope);
-        public BuffEffectReport OnEnter(BuffContext ctx);
-        public BuffEffectReport OnExit(BuffContext ctx);
+        public void Excute(BuffContext ctx,EffectScope scope);
+        public void OnEnter(BuffContext ctx);
+        public void OnExit(BuffContext ctx);
     }
 }

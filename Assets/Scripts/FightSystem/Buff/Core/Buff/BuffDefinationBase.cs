@@ -3,6 +3,7 @@
 //Version : 0.1
 //UnityVersion : 2022.3.62f1c1
 
+using JetBrains.Annotations;
 using System.Collections.Generic;
 
 namespace MyFrame.FightSystem.Buff
@@ -21,19 +22,16 @@ namespace MyFrame.FightSystem.Buff
         public IDuration Duration { get; init; }
 
         public IReadOnlyList<IBuffEffectNode> Effects { get; init; }
-    }
-
-    public class BuffInstance : IBuffInstance
-    {
-        public IBuff Buff { get; init; }
-
-        public IBuffOwner Owner { get; init; }
-#nullable enable
-        public IBuffOwner? Source { get; init; }
-
-        public int Stack { get; init; }
-        public int? RemainingTime { get; init; }
-
-        public bool IsExpired { get; init; }
+        public BuffDefinationBase(IBuffId id, string name, IReadOnlyList<IBuffTrigger> triggers, IReadOnlyList<BuffTag> tags, IBuffStackPolicy stackPolicy, IDuration duration, IReadOnlyList<IBuffEffectNode> effects)
+        {
+            Id = id;
+            id.GenerateId(this);
+            Name = name;
+            Triggers = triggers;
+            Tags = tags;
+            StackPolicy = stackPolicy;
+            Duration = duration;
+            Effects = effects;
+        }
     }
 }
