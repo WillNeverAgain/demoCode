@@ -9,24 +9,24 @@ namespace Tile.View
     /// </summary>
     public class StaticEightGridTileView : IGameMapView
     {
-        private IGameMapModel _gameMapModel;
+        private IRuntimeMapModel _runtimeMapModel;
         private IGameMapRefreshContext _gameMapRefreshContext;
         public IGameMapView Initialize(
-                                IGameMapModel gameMapModel,
+                                IRuntimeMapModel runtimeMapModel,
                                IGameMapRefreshContext ctx, 
                                params object[] param)
         {
-            _gameMapModel = gameMapModel;
+            _runtimeMapModel = runtimeMapModel;
             _gameMapRefreshContext = ctx;
             return this;
         }
         public void Render()
         {
-            for (int x = 0; x < _gameMapModel.MapWidth; x++)
+            for (int x = 0; x < _runtimeMapModel.MapWidth; x++)
             {
-                for (int y = 0; y < _gameMapModel.MapHight; y++)
+                for (int y = 0; y < _runtimeMapModel.MapHight; y++)
                 {
-                    _gameMapModel.GetCell(x,y).Render(x,y, _gameMapRefreshContext);
+                    _runtimeMapModel.GetCell(x,y).Render(x,y, _gameMapRefreshContext);
                 }
             }
         }

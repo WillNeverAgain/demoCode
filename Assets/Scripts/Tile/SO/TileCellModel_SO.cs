@@ -4,13 +4,9 @@ using UnityEngine;
 using UnityEngine.Serialization;
 namespace Tile.SO
 {
-
     
-    //TODO: 通用的通过模板创建cell的信息
-    //实际上是数据的一种demo1暂时用so 后面换成json
-    // 暂时用硬编码实现了
-    [CreateAssetMenu(fileName = "CreateCellInfo_SO", menuName = "SO/CreateCellInfo_SO")]
-    public class CreateCellInfo_SO : ScriptableObject ,ICreateCellInfo
+    [CreateAssetMenu(fileName = "TileCellModel_SO", menuName = "SO/TileCellModel_SO")]
+    public class TileCellModel_SO : ScriptableObject ,ICreateCellInfo
     {
        public Sprite dataSprite;
         public string dataCellName;

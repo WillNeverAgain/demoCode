@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using Tile.Base;
 using Tile.Interface.Base;
 using Tile.ObjectContainer;
@@ -34,7 +33,7 @@ namespace Tile.TillCell.Demo1
 
         private void OnInit()
         {
-            _CellInfo = Resources.Load<CreateCellInfo_SO>("Demo1/SOs/GroundCell");
+            _CellInfo = Resources.Load<TileCellModel_SO>("Demo1/SOs/GroundCell");
         }
         private void CreateCell(int x, int y, IGameMapRefreshContext refreshContext)
         {

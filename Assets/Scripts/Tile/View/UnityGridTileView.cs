@@ -4,11 +4,11 @@ namespace Tile.View
 {
     public class UnityGridTileView : IGameMapView
     {
-        private IGameMapModel _model;
+        private IRuntimeMapModel _model;
         private IGameMapRefreshContext _refreshContext;
-        public IGameMapView Initialize(IGameMapModel gameMapModel, IGameMapRefreshContext ctx, params object[] param)
+        public IGameMapView Initialize(IRuntimeMapModel runtimeMapModel, IGameMapRefreshContext ctx, params object[] param)
         {
-            _model = gameMapModel;
+            _model = runtimeMapModel;
             _refreshContext = ctx;
             return this;
         }

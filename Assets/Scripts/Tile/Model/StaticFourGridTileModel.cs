@@ -10,13 +10,14 @@ namespace Tile.Model
     ///     Demo1使用的初版
     ///     主要是用来测试
     /// </summary>
-    public class StaticFourGridTileModel : IGameMapModel
+    public class StaticFourGridTileModel : IRuntimeMapModel
     {
         private IGameTileCell[,] _gameTileCells;
         private int _cell_wide=>_gameTileCells.GetLength(0);
         private int _cell_high=>_gameTileCells.GetLength(1);
 
-        public IGameMapModel Initialize(params object[] info)
+        public string MapName => "StaticFourGridTileModel";
+        public IRuntimeMapModel Initialize(params object[] info)
         {
             _gameTileCells = new IGameTileCell[,]
             {
@@ -136,7 +137,6 @@ namespace Tile.Model
                 return new DarkCell();
             }
         }
-        public IGameTileCell[,] GameTileCells => _gameTileCells;
         public int MapWidth => _cell_wide;
         public int MapHight => _cell_high;
         public IGameTileCell GetCell(int x, int y)

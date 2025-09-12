@@ -5,8 +5,8 @@ namespace Tile.Context
 {
     public class DefaultGameMapObjectContext : IGameMapObjectContext
     {
-        private IGameMapModel _model;
-        public DefaultGameMapObjectContext(IGameMapModel model)
+        private IRuntimeMapModel _model;
+        public DefaultGameMapObjectContext(IRuntimeMapModel model)
         {
             _model = model;
         }

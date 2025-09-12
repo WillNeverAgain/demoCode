@@ -29,7 +29,7 @@ namespace Tool
                 throw new IndexOutOfRangeException();
             }
             var temp=arguments[index];
-            if (temp.Item1 == typeof(T))
+            if ( typeof(T).IsAssignableFrom(temp.Item1))
             {
                 index++;
                 return (T)value;

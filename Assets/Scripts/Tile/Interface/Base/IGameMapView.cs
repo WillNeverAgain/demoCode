@@ -9,7 +9,7 @@ namespace Tile.Base
         /// <summary>
         /// 初始化绑定方法
         /// </summary>
-        public IGameMapView Initialize(IGameMapModel gameMapModel,IGameMapRefreshContext ctx ,params object[] param);
+        public IGameMapView Initialize(IRuntimeMapModel runtimeMapModel,IGameMapRefreshContext ctx ,params object[] param);
         /// <summary>
         /// 调用后会绘制地图
         /// 外部调用接口 不传入数据

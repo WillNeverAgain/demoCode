@@ -13,7 +13,7 @@ namespace Tile
 
         private ArgumentParser argumentParser;
         
-        private IGameMapModel _gameMapModel;
+        private IRuntimeMapModel _runtimeMapModel;
         private IGameMapView _mapView;
         private IMiddlewareFactory _middlewareFactory;
         private IMapContextBlackboard _mapContextBlackboard;
@@ -51,7 +51,7 @@ namespace Tile
 
             blackboard.RegisterContext<IGameMapRefreshContext>(refreshContext);
 
-            IGameMapModel teModel = new StaticFourGridTileModel();
+            IRuntimeMapModel teModel = new StaticFourGridTileModel();
             teModel.Initialize();
 
             IGameMapObjectContext mapObjectContext = new  DefaultGameMapObjectContext(teModel);
@@ -66,7 +66,7 @@ namespace Tile
             
             
             
-            _gameMapModel = teModel;
+            _runtimeMapModel = teModel;
             _middlewareFactory = middlewareFactory;
             _mapView = mapView;
             _mapContextBlackboard = blackboard;

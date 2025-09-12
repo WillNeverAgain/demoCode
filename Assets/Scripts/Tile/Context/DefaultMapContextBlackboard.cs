@@ -9,7 +9,7 @@ namespace Tile.Context
     public class DefaultMapContextBlackboard : IMapContextBlackboard
     {
         private Dictionary<Type, IMapContext> _contexts = new Dictionary<Type, IMapContext>();
-        private IGameMapModel _gameMapModel;
+        private IRuntimeMapModel _runtimeMapModel;
         
         public T GetContext<T>() where T : IMapContext
         {

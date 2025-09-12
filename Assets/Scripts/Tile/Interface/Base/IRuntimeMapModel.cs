@@ -11,20 +11,20 @@ namespace Tile.Base
     ///
     /// 只存储数据，需要用content转换成游戏的上下文
     /// </summary>
-    public interface IGameMapModel
+    public interface IRuntimeMapModel
     {
+        /// <summary>
+        /// 地图的名字
+        /// </summary>
+        public string MapName { get;  }
         /// <summary>
         /// TODO: 暂留通用初始化接口，后期扩展
         /// </summary>
-        public IGameMapModel Initialize(params object[] info);
+        public IRuntimeMapModel Initialize(params object[] info);
         /// <summary>
         /// 默认信息
         /// </summary>
         IGameTileCell DefaultCell { get; }
-        /// <summary>
-        /// 地面信息
-        /// </summary>
-        IGameTileCell[,] GameTileCells { get; }
         public int MapWidth { get; }
 
         public int MapHight { get; }
