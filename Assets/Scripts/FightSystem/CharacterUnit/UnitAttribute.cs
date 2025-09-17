@@ -13,16 +13,16 @@ namespace MyFrame.FightSystem.Unit
         private readonly IAttributeCalculator<StatContext> _attributeCalculator;
         private readonly IAttributeData<StatContext> _data;
 
-        private ReadOnlyDictionary<AttributeType,AttributeDataUnit<StatContext>> _last;
+        private ReadOnlyDictionary<StatType,AttributeDataUnit<StatContext>> _last;
 
-        public UnitAttribute(IAttributeCalculator<StatContext> attributeCalculator, IAttributeData<StatContext> data, ReadOnlyDictionary<AttributeType, AttributeDataUnit<StatContext>> last)
+        public UnitAttribute(IAttributeCalculator<StatContext> attributeCalculator, IAttributeData<StatContext> data, ReadOnlyDictionary<StatType, AttributeDataUnit<StatContext>> last)
         {
             _attributeCalculator = attributeCalculator;
             _data = data;
             _last = last;
         }
 
-        public void AddModifier(AttributeType type,IValueModifier<StatContext> valueModifier)
+        public void AddModifier(StatType type,IValueModifier<StatContext> valueModifier)
         {
             _data.AddModifier(type, valueModifier);
         }
@@ -32,7 +32,7 @@ namespace MyFrame.FightSystem.Unit
         /// </summary>
         /// <param name="ctx"></param>
         /// <returns></returns>
-        public ReadOnlyDictionary<AttributeType, AttributeDataUnit<StatContext>> GetValue(StatContext ctx)
+        public ReadOnlyDictionary<StatType, AttributeDataUnit<StatContext>> GetValue(StatContext ctx)
         {
             ctx.UnitAttribute = _attributeCalculator.GetValue(ctx , _data);
             if ( !CalculateDirty(ctx)) { return _last; }
@@ -43,12 +43,12 @@ namespace MyFrame.FightSystem.Unit
             return _last;
         }
 
-        public void RemoveModifier(AttributeType type,IValueModifier<StatContext> valueModifier)
+        public void RemoveModifier(StatType type,IValueModifier<StatContext> valueModifier)
         {
             _data.RemoveModifier(type, valueModifier);
         }
 
-        public void SetValue(AttributeType type, float value)
+        public void SetValue(StatType type, float value)
         {
             _data.SetValue(type, value);
         }

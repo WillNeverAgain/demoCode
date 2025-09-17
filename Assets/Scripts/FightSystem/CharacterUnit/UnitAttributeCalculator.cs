@@ -20,7 +20,7 @@ namespace MyFrame.FightSystem.Unit
             _valueCalculator = valueCalculator;
         }
 
-        public ReadOnlyDictionary<AttributeType, AttributeDataUnit<StatContext>> GetValue(StatContext ctx , IAttributeData<StatContext> data)
+        public ReadOnlyDictionary<StatType, AttributeDataUnit<StatContext>> GetValue(StatContext ctx , IAttributeData<StatContext> data)
         {
             int count = 0;
             while (count < MAX_CALCULATOR_TIMES && data.GetDirty(out List<AttributeDataUnit<StatContext> > next_attributes))
@@ -28,7 +28,7 @@ namespace MyFrame.FightSystem.Unit
                 if (next_attributes == null || next_attributes.Count == 0) { break; }
                 foreach(AttributeDataUnit<StatContext> next_attribute in next_attributes)
                 {
-                    ValueBreakdown bd = _valueCalculator.Compute(ctx, next_attribute.ValueModifiers, next_attribute.Base);
+                    ValueBreakdown bd = _valueCalculator.Compute(ctx, next_attribute.ValueModifiers, new ValueBreakdown(next_attribute.Value));
                     data.SetValue(next_attribute.Type, bd.Result);
                     count++;
                 }

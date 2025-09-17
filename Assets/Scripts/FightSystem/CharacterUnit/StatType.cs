@@ -3,7 +3,7 @@
 //Version : 0.1
 //UnityVersion : 2022.3.62f1c1
 
-public enum AttributeType
+public enum StatType
 {
     name,
     description,

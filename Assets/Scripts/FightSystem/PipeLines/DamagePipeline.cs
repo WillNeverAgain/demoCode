@@ -4,6 +4,7 @@
 //UnityVersion : 2022.3.62f1c1
 
 using MyFrame.FightSystem.Calculator;
+using System.Collections.Generic;
 
 namespace MyFrame.FightSystem.Pipeline
 {
@@ -15,6 +16,7 @@ namespace MyFrame.FightSystem.Pipeline
         {
             BaseDamageConfig base_config = new BaseDamageConfig(configs.attackType, configs.skillExecuter, configs.skillTarget,configs.damageRate);
             ValueBreakdown bd = _baseDamageCalculator.Compute(base_config);
+
 
             return bd;
         }

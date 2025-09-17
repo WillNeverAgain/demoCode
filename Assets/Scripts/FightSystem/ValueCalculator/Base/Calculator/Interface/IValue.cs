@@ -9,7 +9,7 @@ namespace MyFrame.FightSystem.Calculator
 {
     public interface IValueCalculator 
     {
-        public ValueBreakdown Compute<T, U>(in T ctx, IEnumerable<U> all_mods , float value) where T : IValueContext where U : IValueModifier<T>;
+        public ValueBreakdown Compute<T, U>(in T ctx, IEnumerable<U> all_mods , ValueBreakdown value) where T : IValueContext where U : IValueModifier<T>;
     }
 
     public interface IValueModifier<T> where T : IValueContext

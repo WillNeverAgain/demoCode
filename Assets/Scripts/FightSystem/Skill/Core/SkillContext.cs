@@ -9,6 +9,6 @@ namespace MyFrame.FightSystem.Skill
 {
     public class SkillContext
     {
-        public readonly FightUnit unit;
+        public readonly ISkillExecuter unit;
     }
 }

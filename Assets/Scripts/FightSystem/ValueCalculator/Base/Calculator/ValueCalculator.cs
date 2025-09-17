@@ -16,22 +16,22 @@ namespace MyFrame.FightSystem.Calculator
         /// <param name="ctx">数据上下文，包含影响数据的因素</param>
         /// <param name="all_mods">调整器容器，包含所有应当应用的规则</param>
         /// <returns>计算结果容器，包含初始值，最终值以及溯源记录</returns>
-        public ValueBreakdown Compute<T, U>(in T ctx, IEnumerable<U> all_mods , float value)
+        public ValueBreakdown Compute<T, U>(in T ctx, IEnumerable<U> all_mods , ValueBreakdown bd)
             where T : IValueContext
             where U : IValueModifier<T>
         {
-            ValueBreakdown db_res = new ValueBreakdown(value);
+            float value = bd.Result;
 
-            value = applyStage(ctx, all_mods, value, ModifierStage.PreAdd,ref db_res);
-            value = applyStage(ctx, all_mods, value, ModifierStage.Multiplier,ref db_res);
-            value = applyStage(ctx, all_mods, value, ModifierStage.PostAdd,ref db_res);
-            value = applyStage(ctx, all_mods, value, ModifierStage.Finalize,ref db_res);
+            value = applyStage(ctx, all_mods, value, ModifierStage.PreAdd,ref bd);
+            value = applyStage(ctx, all_mods, value, ModifierStage.Multiplier,ref bd);
+            value = applyStage(ctx, all_mods, value, ModifierStage.PostAdd,ref bd);
+            value = applyStage(ctx, all_mods, value, ModifierStage.Finalize,ref bd);
 
-            value = MathF.Floor(value);
+            value = MathF.Ceiling(value);
 
-            db_res.Result = value;
+            bd.Result = value;
 
-            return db_res;
+            return bd;
         }
 
         private float applyStage<T, U>(in T ctx , IEnumerable<U> all_mods ,float current_value , ModifierStage current_stage,ref ValueBreakdown bd) 

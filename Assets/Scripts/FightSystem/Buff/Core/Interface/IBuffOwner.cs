@@ -11,9 +11,9 @@ namespace MyFrame.FightSystem.Buff
 {
     public interface IBuffOwner
     {
-        public float? GetAttributeValue(AttributeType type);
-        public void AddAttributeModifier(AttributeType type,IValueModifier<StatContext> valueModifier);
-        public void RemoveAttributeModifier(AttributeType modifier, IValueModifier<StatContext> valueModifier);
+        public float? GetAttributeValue(StatType type);
+        public void AddAttributeModifier(StatType type,IValueModifier<StatContext> valueModifier);
+        public void RemoveAttributeModifier(StatType modifier, IValueModifier<StatContext> valueModifier);
         public void OnBuffAttached(IBuffInstance buff);
         public void OnBuffDetached(IBuffInstance buff);
     }

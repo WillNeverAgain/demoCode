@@ -7,5 +7,6 @@ namespace MyFrame.FightSystem.Calculator
 {
     public interface IStatModifier : IValueModifier<StatContext>
     {
+        public StatType AttributeType { get;}
     }
 }

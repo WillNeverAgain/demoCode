@@ -8,5 +8,5 @@ using System.Collections.ObjectModel;
 
 public interface IAttributeCalculator<T> where T : IValueContext
 {
-    public ReadOnlyDictionary<AttributeType, AttributeDataUnit<T>> GetValue(T ctx , IAttributeData<T> data);
+    public ReadOnlyDictionary<StatType, AttributeDataUnit<T>> GetValue(T ctx , IAttributeData<T> data);
 }

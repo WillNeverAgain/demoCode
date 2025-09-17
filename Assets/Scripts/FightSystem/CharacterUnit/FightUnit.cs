@@ -7,8 +7,6 @@ using MyFrame.FightSystem.Buff;
 using MyFrame.FightSystem.Calculator;
 using MyFrame.FightSystem.Skill;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using Unity.VisualScripting;
 
 namespace MyFrame.FightSystem.Unit
 {
@@ -38,12 +36,12 @@ namespace MyFrame.FightSystem.Unit
     public interface IFightObject
     {
         public FightObjectType TargetType { get; }
-        public float? GetAttributeValue(AttributeType type);
+        public float? GetAttributeValue(StatType type);
         public void Damage(float amount);
         public List<IValueModifier<T>> GetModifiers<T>() where T : IValueContext;
-        public void AddAttributeModifier(AttributeType type, IValueModifier<StatContext> modifier);
-        public void RemoveAttributeModifier(AttributeType type, IValueModifier<StatContext> modifier);
-        public void SetAttributeValue(AttributeType type,float value);
+        public void AddAttributeModifier(StatType type, IValueModifier<StatContext> modifier);
+        public void RemoveAttributeModifier(StatType type, IValueModifier<StatContext> modifier);
+        public void SetAttributeValue(StatType type,float value);
     }
 
     public class FightObject : IFightObject
@@ -51,7 +49,7 @@ namespace MyFrame.FightSystem.Unit
         public FightObjectType TargetType { get; }
         public IGameMap _map { get; }
         private IAttribute<StatContext> attribute;
-        public float? GetAttributeValue(AttributeType type)
+        public float? GetAttributeValue(StatType type)
         {
             if (attribute.GetValue(GetNoneAttibuteStatContext()).TryGetValue(type, out var value))
                 return value.Value;
@@ -83,16 +81,16 @@ namespace MyFrame.FightSystem.Unit
             return new List<IValueModifier<T>>();
         }
 
-        public void AddAttributeModifier(AttributeType type, IValueModifier<StatContext> modifier)
+        public void AddAttributeModifier(StatType type, IValueModifier<StatContext> modifier)
         {
             attribute.AddModifier(type, modifier);
         }
 
-        public void RemoveAttributeModifier(AttributeType type, IValueModifier<StatContext> modifier)
+        public void RemoveAttributeModifier(StatType type, IValueModifier<StatContext> modifier)
         {
             attribute.RemoveModifier(type, modifier);
         }
-        public void SetAttributeValue(AttributeType type,float value)
+        public void SetAttributeValue(StatType type,float value)
         {
             attribute.SetValue(type, value);
         }

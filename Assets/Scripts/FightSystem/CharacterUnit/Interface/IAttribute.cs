@@ -11,10 +11,10 @@ namespace MyFrame.FightSystem.Unit
 {
     public interface IAttribute<T> where T : IValueContext
     {
-        public ReadOnlyDictionary<AttributeType, AttributeDataUnit<T>> GetValue(T ctx);
-        public void AddModifier(AttributeType type,IValueModifier<T> valueModifier);
-        public void RemoveModifier(AttributeType type, IValueModifier<T> valueModifier);
-        public void SetValue(AttributeType type , float value);
+        public ReadOnlyDictionary<StatType, AttributeDataUnit<T>> GetValue(T ctx);
+        public void AddModifier(StatType type,IValueModifier<T> valueModifier);
+        public void RemoveModifier(StatType type, IValueModifier<T> valueModifier);
+        public void SetValue(StatType type , float value);
     }
 
 }

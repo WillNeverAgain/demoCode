@@ -3,13 +3,10 @@
 //Version : 0.1
 //UnityVersion : 2022.3.62f1c1
 
-using MyFrame.FightSystem;
 using MyFrame.FightSystem.Calculator;
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Runtime.Serialization;
-using UnityEngine.UI;
 
 namespace MyFrame.FightSystem.Skill
 {
@@ -24,18 +21,18 @@ namespace MyFrame.FightSystem.Skill
             switch (config.AttackType)
             {
                 case AttackType.Physics:
-                    attack_value = config.SkillExecuter.GetAttributeValue(AttributeType.p_atk).Value;
-                    defense_value = config.SkillTarget.GetAttributeValue(AttributeType.p_def).Value;
+                    attack_value = config.SkillExecuter.GetAttributeValue(StatType.p_atk).Value;
+                    defense_value = config.SkillTarget.GetAttributeValue(StatType.p_def).Value;
                     break;
                 case AttackType.Magic:
-                    attack_value = config.SkillExecuter.GetAttributeValue(AttributeType.m_atk).Value;
-                    defense_value = config.SkillTarget.GetAttributeValue(AttributeType.m_def).Value;
+                    attack_value = config.SkillExecuter.GetAttributeValue(StatType.m_atk).Value;
+                    defense_value = config.SkillTarget.GetAttributeValue(StatType.m_def).Value;
                     break;
                 default:
                     throw new AttackTypeException("wrong attacktype,there must be something wrong with your code");
             }
             ValueBreakdown bd = new ValueBreakdown(MathF.Max(attack_value - defense_value, attack_value * MIN_ATTACK_RATE));
-            var bctx = new BaseDamageModContext(config.SkillExecuter.GetAttributeValue(AttributeType.critical_rate).Value, config.DamageRate);
+            var bctx = new BaseDamageModContext(config.SkillExecuter.GetAttributeValue(StatType.critical_rate).Value, config.DamageRate);
 
             foreach(var modifier in _baseDamageModPolicy)
             {

@@ -9,6 +9,6 @@ namespace MyFrame.FightSystem.Calculator
 {
     public class StatContext : IValueContext
     {
-        public ReadOnlyDictionary<AttributeType , AttributeDataUnit<StatContext>> UnitAttribute { get; set; }
+        public ReadOnlyDictionary<StatType , AttributeDataUnit<StatContext>> UnitAttribute { get; set; }
     }
 }

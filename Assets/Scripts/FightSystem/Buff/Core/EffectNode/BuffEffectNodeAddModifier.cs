@@ -9,7 +9,7 @@ namespace MyFrame.FightSystem.Buff
 {
     public class BuffEffectNodeAddModifier : IBuffEffectNode
     {
-        private AttributeType attributeType {  get; init; } 
+        private StatType attributeType {  get; init; } 
         private IValueModifier<StatContext> modifier {  get; init; }
         public void Excute(BuffContext ctx, EffectScope scope)
         {

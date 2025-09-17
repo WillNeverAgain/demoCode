@@ -3,7 +3,6 @@
 //Version : 0.1
 //UnityVersion : 2022.3.62f1c1
 
-using MyFrame.FightSystem.Event;
 using System;
 
 namespace MyFrame.FightSystem.Buff
