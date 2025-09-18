@@ -1,9 +1,9 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
-    <Style src="project://database/Assets/Editor/MapEditor/MapEditor.uss?fileID=7433441132597879392&amp;guid=8042f36e76ce62b4f8927ad29a9d9940&amp;type=3#MapEditor" />
+    <Style src="project://database/Assets/EditorInterface/MapEditor/MapEditor.uss?fileID=7433441132597879392&amp;guid=8042f36e76ce62b4f8927ad29a9d9940&amp;type=3#MapEditor" />
     <ui:VisualElement style="flex-grow: 1; flex-direction: row;">
         <ui:VisualElement name="FIleList" style="flex-grow: 1; width: 150px;">
             <ui:VisualElement style="flex-grow: 1; height: 30px; flex-direction: row; align-items: center; justify-content: center;">
-                <ui:Button text="Button" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Add" />
+                <ui:Button text="Add Map" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Add" />
             </ui:VisualElement>
             <ui:VisualElement style="flex-grow: 1; height: 100%;">
                 <ui:TreeView name="FileTree" />

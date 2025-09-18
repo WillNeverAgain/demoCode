@@ -1,6 +1,6 @@
 ﻿using System.Linq;
 using UniTest;
-namespace Editor.InsButton
+namespace InsButton
 {
 #if UNITY_EDITOR
 using UnityEditor;
