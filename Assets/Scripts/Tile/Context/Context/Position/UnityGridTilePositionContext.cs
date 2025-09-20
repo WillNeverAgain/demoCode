@@ -48,7 +48,7 @@ namespace Tile.Context
         public Vector2Int WorldPosToCell(Vector3 worldPos)
         {
             Vector3Int temp = grid.WorldToCell(worldPos);
-            return new Vector2Int( temp.x,temp.y);
+            return new Vector2Int( temp.x,temp.y) - cellOffset;
         }
     }
 }

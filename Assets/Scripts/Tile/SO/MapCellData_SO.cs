@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using Tile.Data;
+using Tile.Interface.Base;
 using UnityEngine;
 namespace Tile.SO
 {
@@ -9,7 +11,9 @@ namespace Tile.SO
         public int row;
         public int col;
         public string cellName;
+        public Sprite sprite;
         public List<string> component;
+        public int layer;
         public string CellID => cellName;
     }
 }

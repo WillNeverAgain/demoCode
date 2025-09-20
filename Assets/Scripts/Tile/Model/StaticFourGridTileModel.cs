@@ -12,14 +12,14 @@ namespace Tile.Model
     /// </summary>
     public class StaticFourGridTileModel : IRuntimeMapModel
     {
-        private IGameTileCell[,] _gameTileCells;
+        private IGameRuntimeTileCell[,] _gameTileCells;
         private int _cell_wide=>_gameTileCells.GetLength(0);
         private int _cell_high=>_gameTileCells.GetLength(1);
 
         public string MapName => "StaticFourGridTileModel";
         public IRuntimeMapModel Initialize(params object[] info)
         {
-            _gameTileCells = new IGameTileCell[,]
+            _gameTileCells = new IGameRuntimeTileCell[,]
             {
                 {
                     new DarkCell(), new GroundCell() , new GroundCell() , new GroundCell() , new GroundCell(),
@@ -132,14 +132,14 @@ namespace Tile.Model
             };
             return this;
         }
-        public IGameTileCell DefaultCell {
+        public IGameRuntimeTileCell DefaultCell {
             get {
                 return new DarkCell();
             }
         }
         public int MapWidth => _cell_wide;
         public int MapHight => _cell_high;
-        public IGameTileCell GetCell(int x, int y)
+        public IGameRuntimeTileCell GetCell(int x, int y)
         {
             if (x+y*_cell_wide > _gameTileCells.Length || 
                 x<0 || y<0
@@ -149,7 +149,7 @@ namespace Tile.Model
             }
             return _gameTileCells[x, y];
         }
-        public IGameTileCell GetCell(Vector2Int cellPosition)
+        public IGameRuntimeTileCell GetCell(Vector2Int cellPosition)
         {
             return GetCell(cellPosition.x, cellPosition.y);
         }

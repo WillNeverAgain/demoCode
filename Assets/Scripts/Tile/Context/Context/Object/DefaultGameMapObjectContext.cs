@@ -10,11 +10,11 @@ namespace Tile.Context
         {
             _model = model;
         }
-        public IGameTileCell GetCell(int x, int y)
+        public IGameRuntimeTileCell GetCell(int x, int y)
         {
             return _model.GetCell(x, y);
         }
-        public IGameTileCell GetCell(Vector2Int logicalPosition)
+        public IGameRuntimeTileCell GetCell(Vector2Int logicalPosition)
         {
             return _model.GetCell(logicalPosition);
         }

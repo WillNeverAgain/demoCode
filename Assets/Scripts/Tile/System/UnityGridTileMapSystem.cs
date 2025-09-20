@@ -43,14 +43,15 @@ namespace Tile
             
             blackboard.RegisterContext<IGameMapPositionContext>(positionContext);
             
-            ICellFactory factory = new UnityGridCellFactory();
-            factory.Initialize(_grid.transform,_tilePrefab);
+            ICellGameObjectFactory gameObjectFactory = new UnityGridCellGameObjectFactory();
+            gameObjectFactory.Initialize(_grid.transform,_tilePrefab);
 
             IGameMapRefreshContext refreshContext = new SimpleRefreshContext();
-            refreshContext.Initialize(factory,positionContext);
+            refreshContext.Initialize(gameObjectFactory,positionContext);
 
             blackboard.RegisterContext<IGameMapRefreshContext>(refreshContext);
 
+            //TODO 数据
             IRuntimeMapModel teModel = new StaticFourGridTileModel();
             teModel.Initialize();
 

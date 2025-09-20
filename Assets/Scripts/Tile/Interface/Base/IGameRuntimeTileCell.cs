@@ -9,7 +9,7 @@ namespace Tile.Base
     /// 从管理类调用，或者生命周期类调用
     /// 其它对象不调用
     /// </summary>
-    public interface IGameTileCell : ITagObject
+    public interface IGameRuntimeTileCell : ITagObject
     {
         /// <summary>
         /// 只在View里调用

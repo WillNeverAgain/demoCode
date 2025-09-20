@@ -1,26 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using Tile.Data;
+using Tile.Interface.Base;
 using Tile.SO;
 using UnityEngine;
-
-// 单元格数据接口，确保扩展性
-public interface IGameMapCellData
-{
-    public const IGameMapCellData NULL_DATA = null;
-    public string CellID { get; }
-    //TODO : 组件
-}
-public interface IGameMapData
-{
-    string MapName { get; }
-    List<List<IGameMapCellData>> MapModel { get; }
-}
-
 [CreateAssetMenu(fileName = "MapData_SO", menuName = "SO/MapData_SO")]
 public class MapData_SO : ScriptableObject, IGameMapData
 {
     public string mapName;
-    public List<List<IGameMapCellData>> mapData = new List<List<IGameMapCellData>>();
+    public List<List<MapCellData_SO>> mapData = new List<List<MapCellData_SO>>();
 
     public string MapName => mapName;
     public List<List<IGameMapCellData>> MapModel

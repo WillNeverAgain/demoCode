@@ -4,7 +4,8 @@ using Tile.SO;
 using UnityEngine;
 namespace Tile.Base
 {
-    public interface ICellFactory 
+    
+    public interface ICellGameObjectFactory 
     {
         /// <summary>
         /// 预留通用接口

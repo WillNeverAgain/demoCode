@@ -19,11 +19,11 @@ namespace Tile.Middleware
         /// <summary>
         ///  获得范围内满足条件的cell
         /// </summary>
-        public IReadOnlyList<IGameTileCell> GetCellWithTagInRange(Vector3 findPosition,Func<IList<string>,bool> tagCharger, IRangeArrayInfo rangeArrayInfo);
+        public IReadOnlyList<IGameRuntimeTileCell> GetCellWithTagInRange(Vector3 findPosition,Func<IList<string>,bool> tagCharger, IRangeArrayInfo rangeArrayInfo);
         /// <summary>
         ///  获得范围内满足条件的cell
         /// </summary>
-        public IReadOnlyList<IGameTileCell> GetCellWithTagInRange(Vector3 findPosition,Func<IList<string>,bool> tagCharger, IEnumerable<Vector2Int> rangeArray);
+        public IReadOnlyList<IGameRuntimeTileCell> GetCellWithTagInRange(Vector3 findPosition,Func<IList<string>,bool> tagCharger, IEnumerable<Vector2Int> rangeArray);
         /// <summary>
         /// 返回范围内对应的tag
         /// </summary>

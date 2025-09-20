@@ -24,15 +24,15 @@ namespace Tile.Base
         /// <summary>
         /// 默认信息
         /// </summary>
-        IGameTileCell DefaultCell { get; }
+        IGameRuntimeTileCell DefaultCell { get; }
         public int MapWidth { get; }
 
         public int MapHight { get; }
         /// <summary>
         /// 获得地板
         /// </summary>
-        public IGameTileCell GetCell(int x, int y);
-        public IGameTileCell GetCell(Vector2Int cellPosition);
+        public IGameRuntimeTileCell GetCell(int x, int y);
+        public IGameRuntimeTileCell GetCell(Vector2Int cellPosition);
         /// <summary>
         /// 获得物体
         /// </summary>

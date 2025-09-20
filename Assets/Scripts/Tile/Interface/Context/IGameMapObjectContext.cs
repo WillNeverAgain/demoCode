@@ -8,8 +8,8 @@ namespace Tile.Base
         /// <summary>
         /// 获得地板
         /// </summary>
-        public IGameTileCell GetCell(int x, int y);
-        public IGameTileCell GetCell(Vector2Int logicalPosition);
+        public IGameRuntimeTileCell GetCell(int x, int y);
+        public IGameRuntimeTileCell GetCell(Vector2Int logicalPosition);
         /// <summary>
         /// 得到单元格和物体
         /// </summary>

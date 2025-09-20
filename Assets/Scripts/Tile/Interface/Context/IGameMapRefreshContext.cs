@@ -12,11 +12,11 @@ namespace Tile.Base
     /// </summary>
     public interface IGameMapRefreshContext : IMapContext
     {
-            void Initialize(ICellFactory factory,IGameMapPositionContext positionContext);
+            void Initialize(ICellGameObjectFactory gameObjectFactory,IGameMapPositionContext positionContext);
             /// <summary>
             /// 刷新时给cell类提供实例化工厂
             /// </summary>
-            ICellFactory CellFactory { get; }
+            ICellGameObjectFactory CellGameObjectFactory { get; }
             /// <summary>
             /// 提供位置转换的工具
             /// </summary>

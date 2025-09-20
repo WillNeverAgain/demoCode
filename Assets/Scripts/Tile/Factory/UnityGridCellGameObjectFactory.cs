@@ -8,14 +8,14 @@ using UnityEngine;
 using UnityEngine.Tilemaps;
 namespace Tile.Factory
 {
-    public class UnityGridCellFactory : ICellFactory
+    public class UnityGridCellGameObjectFactory : ICellGameObjectFactory
     {
         private Transform gridTransform;
         private GameObject tilePrefab;
         
         private ArgumentParser argumentParser;
 
-        public UnityGridCellFactory()
+        public UnityGridCellGameObjectFactory()
         {
             argumentParser = new ArgumentParser();
             argumentParser.SettingArguments<Transform>();

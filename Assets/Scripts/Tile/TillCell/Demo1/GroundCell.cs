@@ -10,7 +10,7 @@ namespace Tile.TillCell.Demo1
     /// <summary>
     /// TODO: 硬编码，后期修改
     /// </summary>
-    public class GroundCell : IGameTileCell
+    public class GroundCell : IGameRuntimeTileCell
     {
         private static ICreateCellInfo _CellInfo;
         public IList<string> Tags => tags;
@@ -19,7 +19,7 @@ namespace Tile.TillCell.Demo1
             CellMoveTags.MOVE_ABLE_CELL
         };
         GameObject gameObject;
-        void IGameTileCell.Render(int x, int y, IGameMapRefreshContext refreshContext)
+        void IGameRuntimeTileCell.Render(int x, int y, IGameMapRefreshContext refreshContext)
         {
             if (gameObject == null)
             {
@@ -42,7 +42,7 @@ namespace Tile.TillCell.Demo1
                 OnInit();
             }
             _container = new DefaultObjectContainer();
-            gameObject= refreshContext.CellFactory.CreateCell(_CellInfo);
+            gameObject= refreshContext.CellGameObjectFactory.CreateCell(_CellInfo);
             cellPosition = new Vector2Int(x, y);
             gameObject.transform.position = refreshContext.PositionContext.CellPosToWorld(cellPosition);
             gameObject.SetActive(true);

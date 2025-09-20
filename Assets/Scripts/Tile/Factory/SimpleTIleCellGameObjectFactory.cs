@@ -8,7 +8,7 @@ namespace Tile.Factory
     /// 临时工厂
     /// 暂时还每决定工厂的数据
     /// </summary>
-    public class SimpleTIleCellFactory : ICellFactory
+    public class SimpleTIleCellGameObjectFactory : ICellGameObjectFactory
     {
         private GameObject GroundCellPrefab = null;
         public void Initialize(params object[] args)
@@ -19,6 +19,5 @@ namespace Tile.Factory
         {
             return null;
         }
-
     }
 }

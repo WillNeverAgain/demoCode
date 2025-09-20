@@ -7,6 +7,6 @@ namespace Tile.Interface.Base
         public Sprite Sprite{get;}
         public string CellName { get; }
         public int TileLayer{get;}
-        public IReadOnlyList<string> args{get;}
+        public IReadOnlyList<object> args{get;}
     }
 }

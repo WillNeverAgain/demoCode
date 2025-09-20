@@ -6,14 +6,14 @@ namespace Tile.Context
     /// </summary>
     public class SimpleRefreshContext : IGameMapRefreshContext
     {
-        private ICellFactory _factory;
+        private ICellGameObjectFactory _gameObjectFactory;
         private IGameMapPositionContext _map;
-        public void Initialize(ICellFactory factory, IGameMapPositionContext positionContext)
+        public void Initialize(ICellGameObjectFactory gameObjectFactory, IGameMapPositionContext positionContext)
         {
-            _factory = factory;
+            _gameObjectFactory = gameObjectFactory;
             _map=positionContext;
         }
-        public ICellFactory CellFactory => _factory;
+        public ICellGameObjectFactory CellGameObjectFactory => _gameObjectFactory;
         public IGameMapPositionContext PositionContext => _map;
     }
 }

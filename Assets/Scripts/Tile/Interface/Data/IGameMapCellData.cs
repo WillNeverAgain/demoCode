@@ -1,10 +1,10 @@
-﻿namespace Tile.Data
+﻿using Tile.Interface.Base;
+namespace Tile.Data
 {
-    /// <summary>
-    /// 数据类接口，每一个cell的数据
-    /// </summary>
+// 单元格数据接口，确保扩展性
     public interface IGameMapCellData
     {
-        
+        public const IGameMapCellData NULL_DATA = null;
+        public string CellID { get; }
     }
 }

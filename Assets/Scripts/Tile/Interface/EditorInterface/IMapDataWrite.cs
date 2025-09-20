@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Tile.Data;
 using UnityEngine;
 namespace Tile.EditorInterface
 {
@@ -8,11 +9,10 @@ namespace Tile.EditorInterface
     public interface IMapDataWrite
     {
         public IGameMapCellData CreateCell(Vector2Int position);
-        public IEnumerable<IGameMapCellData> CreateCellEnumerator(IEnumerable<Vector2Int> ranges);
+        public IEnumerable<IGameMapCellData> CreateCellEnumerable(IEnumerable<Vector2Int> ranges);
         public IGameMapCellData GetCell(Vector2Int position);
-        public IEnumerable<IGameMapCellData> GetCellEnumerator(IEnumerable<Vector2Int> ranges);
+        public IEnumerable<IGameMapCellData> GetCellEnumerable(IEnumerable<Vector2Int> ranges);
         public IGameMapData CreateMapAssets(string mapName);
         public void SaveMapAssets();
-        public void LoadMapAssets(string mapName);
     }
 }

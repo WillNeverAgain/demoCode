@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Tile.Interface.Base;
 namespace Tile.Data
 {
     /// <summary>
@@ -6,7 +7,7 @@ namespace Tile.Data
     /// </summary>
     public interface IGameMapData
     {
-        public string MapName { get;  }
-        public List<List<IGameMapCellData>> MapModel{ get; }
+        string MapName { get; }
+        List<List<IGameMapCellData>> MapModel { get; }
     }
 }

@@ -57,9 +57,9 @@ namespace Tile.Middleware.CellRangeMiddleware
             }
             return objects;
         }
-        public IReadOnlyList<IGameTileCell> GetCellWithTagInRange(Vector3 findPosition, Func<IList<string>, bool> tagCharger, IRangeArrayInfo rangeArrayInfo)
+        public IReadOnlyList<IGameRuntimeTileCell> GetCellWithTagInRange(Vector3 findPosition, Func<IList<string>, bool> tagCharger, IRangeArrayInfo rangeArrayInfo)
         {
-            List<IGameTileCell> cellsList = new List<IGameTileCell>();
+            List<IGameRuntimeTileCell> cellsList = new List<IGameRuntimeTileCell>();
             var  pos= _mapPositionContext.WorldPosToCell(findPosition);
             for (int i = 0; i < rangeArrayInfo.MaxLayer; i++)
             {
@@ -79,7 +79,7 @@ namespace Tile.Middleware.CellRangeMiddleware
             }
             return cellsList;
         }
-        public IReadOnlyList<IGameTileCell> GetCellWithTagInRange(Vector3 findPosition, Func<IList<string>, bool> tagCharger, IEnumerable<Vector2Int> rangeArray)
+        public IReadOnlyList<IGameRuntimeTileCell> GetCellWithTagInRange(Vector3 findPosition, Func<IList<string>, bool> tagCharger, IEnumerable<Vector2Int> rangeArray)
         {
             return GetCellWithTagInRange(findPosition,tagCharger,new DefaultRangeArrayInfo(rangeArray));
         }

@@ -14,10 +14,10 @@ namespace Tile.SO
         /// <summary>
         /// 初始化的args
         /// </summary>
-        public List<string> dataArgs;
+        public List<object> dataArgs;
         public Sprite Sprite => dataSprite;
         public string CellName => dataCellName;
         public int TileLayer => dataTileLayer;
-        public IReadOnlyList<string> args => dataArgs;
+        public IReadOnlyList<object> args => dataArgs;
     }
 }

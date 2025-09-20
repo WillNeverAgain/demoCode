@@ -8,13 +8,13 @@ namespace Tile.TillCell.Demo1
     /// <summary>
     /// 无法移动到的黑暗领域(?
     /// </summary>
-    public class DarkCell : IGameTileCell
+    public class DarkCell : IGameRuntimeTileCell
     {
 
         public IList<string> Tags => _tags;
         private List<string> _tags=new List<string>();
 
-        void IGameTileCell.Render(int x, int y, IGameMapRefreshContext tileObject)
+        void IGameRuntimeTileCell.Render(int x, int y, IGameMapRefreshContext tileObject)
         {
             cellPosition=new Vector2Int(x,y);
         }
