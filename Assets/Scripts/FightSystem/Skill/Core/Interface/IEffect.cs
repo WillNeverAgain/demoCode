@@ -8,5 +8,6 @@ namespace MyFrame.FightSystem.Skill
     public interface IEffect
     {
         public EffectReport Execute(SkillContext sctx , IBlackBoard blackBoard , ISkillTarget target);
+        public EffectReport OnRemove(SkillContext sctx, IBlackBoard blackBoard, ISkillTarget target);
     }
 }

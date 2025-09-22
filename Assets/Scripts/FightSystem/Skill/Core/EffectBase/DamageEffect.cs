@@ -22,5 +22,10 @@ namespace MyFrame.FightSystem.Skill
             _damagePipeline.Damage(damageConfigs);
             return effectReport;
         }
+
+        public EffectReport OnRemove(SkillContext sctx, IBlackBoard blackBoard, ISkillTarget target)
+        {
+            return new EffectReport();
+        }
     }
 }

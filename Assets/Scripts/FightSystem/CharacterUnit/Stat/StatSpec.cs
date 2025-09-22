@@ -7,6 +7,7 @@ using System;
 
 namespace MyFrame.FightSystem.Unit
 {
+#nullable enable
     public abstract class StatSpecBase
     {
         public StatType attributeType;
@@ -17,6 +18,29 @@ namespace MyFrame.FightSystem.Unit
             this.attributeType = attributeType;
             this.valueType = valueType;
             this.statFlag = statFlag;
+        }
+        public bool Equals(StatSpecBase? other)
+        {
+            if (ReferenceEquals(null, other)) return false;
+            if (ReferenceEquals(this, other)) return true;
+
+            return attributeType == other.attributeType
+                && valueType == other.valueType
+                && statFlag == other.statFlag;
+        }
+
+        public override bool Equals(object? obj) => Equals(obj as StatSpecBase);
+
+        public override int GetHashCode()
+        {
+            unchecked
+            {
+                int hash = (int)2166136261;
+                hash = (hash ^ (int)attributeType) * 16777619;
+                hash = (hash ^ valueType.GetHashCode()) * 16777619;
+                hash = (hash ^ (int)statFlag) * 16777619;
+                return hash;
+            }
         }
     }
     public sealed class StatSpec<T> : StatSpecBase

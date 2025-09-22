@@ -3,10 +3,12 @@
 //Version : 0.1
 //UnityVersion : 2022.3.62f1c1
 
+using MyFrame.FightSystem.Unit;
+
 namespace MyFrame.FightSystem.Calculator
 {
     public interface IStatModifier : IValueModifier<StatContext>
     {
-        public StatType AttributeType { get;}
+        public StatSpecBase Spec { get; }
     }
 }

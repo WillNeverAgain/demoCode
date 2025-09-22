@@ -10,5 +10,10 @@ namespace MyFrame.FightSystem.Calculator
     public class StatContext : IValueContext
     {
         public ReadOnlyDictionary<StatType , AttributeDataUnit<StatContext>> UnitAttribute { get; set; }
+
+        public int GetStableHash()
+        {
+            return 0;
+        }
     }
 }
