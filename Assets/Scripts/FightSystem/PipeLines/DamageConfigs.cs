@@ -15,9 +15,6 @@ namespace MyFrame.FightSystem.Pipeline
         public ISkillTarget skillTarget;
         public AttackType attackType;
         public float damageRate;
-        public List<IStatModifier> toAddAttributeModifiers;
-        public List<IValueModifier<DamageContext>> toAddDamageModifiers;
-        public List<IValueModifier<DefenseContext>> toAddDefenseModifiers;
         public DamageConfigs(ISkillExecuter skillExecuter,ISkillTarget skillTarget,AttackType attackType,float damageRate)
         {
             this.skillExecuter = skillExecuter;

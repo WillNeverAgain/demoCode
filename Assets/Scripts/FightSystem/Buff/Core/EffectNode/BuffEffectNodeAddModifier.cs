@@ -4,6 +4,7 @@
 //UnityVersion : 2022.3.62f1c1
 
 using MyFrame.FightSystem.Calculator;
+using MyFrame.FightSystem.Unit;
 
 namespace MyFrame.FightSystem.Buff
 {
