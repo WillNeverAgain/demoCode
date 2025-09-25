@@ -6,7 +6,8 @@
 using MyFrame.FightSystem.Skill;
 using MyFrame.FightSystem.Unit;
 
-public interface ISkillExecuter : IFightObject
+public interface ISkillExecuter
 {
+    public StatResult<T> GetStat<T>(StatSpec<T> spec);
     public SkillReport ExecuteSkill(ISkill skill, SkillContext sctx, TargetPos aim);
 }

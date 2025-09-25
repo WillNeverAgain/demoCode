@@ -12,7 +12,7 @@ namespace MyFrame.FightSystem.Unit
         StatResult<T> Evaluate<T>(StatSpec<T> spec, StatEvaluateCommand command);
         bool TryEvaluate<T>(StatSpec<T> spec, StatEvaluateCommand command, out StatResult<T> value);
     }
-    public record StatResult<T>(T _base,T _resualt,IReadOnlyList<string> _notes)
+    public record StatResult<T>(T _base,T _result,IReadOnlyList<string> _notes)
     {
 
     }

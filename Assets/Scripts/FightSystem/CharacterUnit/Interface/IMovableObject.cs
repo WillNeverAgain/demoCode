@@ -5,7 +5,7 @@
 
 namespace MyFrame.FightSystem.Unit
 {
-    public interface IMovableObject : IFightObject
+    public interface IMovableObject
     {
         bool CanMoveTo(TargetPos pos,MoveContext ctx);
         MoveReport MoveTo(TargetPos pos, MoveContext ctx);

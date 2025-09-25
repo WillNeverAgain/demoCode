@@ -8,11 +8,12 @@ using MyFrame.FightSystem.Unit;
 
 namespace MyFrame.FightSystem.Skill
 {
-    public interface ISkillTarget : IFightObject
+    public interface ISkillTarget
     {  
+        public FightObjectType TargetType { get; }
         public bool WhenSelected(SkillContext sctx);
-        
 
+        public StatResult<T> GetStat<T>(StatSpec<T> spec);
     }
 
 }
