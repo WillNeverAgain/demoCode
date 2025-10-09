@@ -78,8 +78,6 @@ namespace Lua.Utility
         }
     }
     
-    
-    
     public class LuaEventTypeNotFoundException : Exception
     {
         public LuaEventTypeNotFoundException(string message) : base(message)
