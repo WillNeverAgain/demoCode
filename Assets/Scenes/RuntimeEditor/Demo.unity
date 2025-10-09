@@ -390,7 +390,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1963298089}
   - component: {fileID: 1963298090}
-  - component: {fileID: 1963298091}
   m_Layer: 0
   m_Name: Manager
   m_TagString: Untagged
@@ -429,20 +428,6 @@ MonoBehaviour:
   _tilePrefab: {fileID: 6039113833168904734, guid: c33e3f615482e064089469c7c46b84e8, type: 3}
   posDebug: 0
   rangeMask: 0
---- !u!114 &1963298091
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1963298088}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 84a6d3dbcfd99d4448bdabad6b7ef953, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  write: {fileID: 0}
-  _mapDataSo: {fileID: 11400000, guid: f2a583dc4d0d8f4448d1ae3077836e73, type: 2}
 --- !u!1 &2056097209
 GameObject:
   m_ObjectHideFlags: 0
