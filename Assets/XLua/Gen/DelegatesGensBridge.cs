@@ -775,6 +775,11 @@ namespace XLua
 			    return new System.Action<string>(__Gen_Delegate_Imp2);
 			}
 		
+		    if (type == typeof(Lua.Utility.DebugEvent.DebugEventDelegate))
+			{
+			    return new Lua.Utility.DebugEvent.DebugEventDelegate(__Gen_Delegate_Imp2);
+			}
+		
 		    if (type == typeof(System.Action<double>))
 			{
 			    return new System.Action<double>(__Gen_Delegate_Imp3);

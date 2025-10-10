@@ -1,0 +1,10 @@
+EventItems = {
+    debugEvent = {
+        eventType = "Debug",
+        eventName = "console_debug",
+        enable = true,
+        action = function(value)
+             print(value)
+        end
+    }
+}

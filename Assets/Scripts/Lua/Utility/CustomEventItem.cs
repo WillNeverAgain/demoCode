@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using UnityEngine;
 using XLua;
 namespace Lua.Utility
 {
@@ -30,7 +31,7 @@ namespace Lua.Utility
     public class DebugEvent : CustomEventItem
     {
         [CSharpCallLua]
-        public delegate void DebugEventDelegate(int number);
+        public delegate void DebugEventDelegate(string value);
         public override string EventType => "Debug";
         public DebugEventDelegate action;
         protected override void ActionInit(LuaTable context)
@@ -43,7 +44,7 @@ namespace Lua.Utility
         }
     }
 
-    public interface LuaEventTranslator
+    public interface LuaEventFactory
     {
         public CustomEventItem CreatLuaEvent(LuaTable context);
     }
@@ -51,19 +52,20 @@ namespace Lua.Utility
     /// <summary>
     /// 临时lua事件翻译器(就是一个工厂实际上)
     /// </summary>
-    public class SimpleLuaEventTranslator : LuaEventTranslator
+    public class SimpleLuaEventFactory : LuaEventFactory
     {
-        Dictionary<string,CustomEventItem> eventMap = new Dictionary<string, CustomEventItem>();
+        private Dictionary<string, CustomEventItem> eventMap;
         /// <summary>
         /// 硬编码
         /// </summary>
-        public SimpleLuaEventTranslator()
+        public SimpleLuaEventFactory()
         {
+            eventMap = new Dictionary<string, CustomEventItem>();
             AddEvent(new DebugEvent());
         }
         private void AddEvent(CustomEventItem eventItem)
         {
-            eventMap.Add(eventItem.EventName, eventItem);
+            eventMap.Add(eventItem.EventType, eventItem);
         }
         public CustomEventItem CreatLuaEvent(LuaTable context)
         {
@@ -77,7 +79,7 @@ namespace Lua.Utility
             throw new LuaEventTypeNotFoundException($"eventType:{eventType} not found");
         }
     }
-    
+
     public class LuaEventTypeNotFoundException : Exception
     {
         public LuaEventTypeNotFoundException(string message) : base(message)
