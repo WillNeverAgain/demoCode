@@ -160,6 +160,12 @@ namespace XLua.CSObjectWrap
             translator.DelayWrapLoader(typeof(XLuaTest.FooExtension), XLuaTestFooExtensionWrap.__Register);
         
         
+            translator.DelayWrapLoader(typeof(XLuaTest.GameLuaTest.Map), XLuaTestGameLuaTestMapWrap.__Register);
+        
+        
+            translator.DelayWrapLoader(typeof(XLuaTest.GameLuaTest.Actor), XLuaTestGameLuaTestActorWrap.__Register);
+        
+        
             translator.DelayWrapLoader(typeof(Tutorial.DerivedClass.TestEnumInner), TutorialDerivedClassTestEnumInnerWrap.__Register);
         
         
@@ -175,6 +181,8 @@ namespace XLua.CSObjectWrap
             translator.AddInterfaceBridgeCreator(typeof(System.Collections.IEnumerator), SystemCollectionsIEnumeratorBridge.__Create);
             
             translator.AddInterfaceBridgeCreator(typeof(XLuaTest.IExchanger), XLuaTestIExchangerBridge.__Create);
+            
+            translator.AddInterfaceBridgeCreator(typeof(XLuaTest.GameLuaTest.IMapCreator), XLuaTestGameLuaTestIMapCreatorBridge.__Create);
             
             translator.AddInterfaceBridgeCreator(typeof(Tutorial.CSCallLua.ItfD), TutorialCSCallLuaItfDBridge.__Create);
             

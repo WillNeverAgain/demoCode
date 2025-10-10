@@ -44,6 +44,8 @@ namespace Tutorial
             print('ret_e called')
             return e
         end
+        
+        return d
     ";
 
         public class DClass
@@ -70,7 +72,7 @@ namespace Tutorial
         void Start()
         {
             luaenv = new LuaEnv();
-            luaenv.DoString(script);
+            var res= luaenv.DoString(script);
 
             Debug.Log("_G.a = " + luaenv.Global.Get<int>("a"));
             Debug.Log("_G.b = " + luaenv.Global.Get<string>("b"));
@@ -90,7 +92,7 @@ namespace Tutorial
             d3.f2 = 1000;
             Debug.Log("_G.d = {f1=" + d3.f1 + ", f2=" + d3.f2 + "}");
             Debug.Log("_G.d:add(1, 2)=" + d3.add(1, 2));
-
+            
             LuaTable d4 = luaenv.Global.Get<LuaTable>("d");//映射到LuaTable，by ref
             Debug.Log("_G.d = {f1=" + d4.Get<int>("f1") + ", f2=" + d4.Get<int>("f2") + "}");
 
@@ -103,6 +105,7 @@ namespace Tutorial
             int f_ret = f(100, "John", out d_ret);//lua的多返回值映射：从左往右映射到c#的输出参数，输出参数包括返回值，out参数，ref参数
             Debug.Log("ret.d = {f1=" + d_ret.f1 + ", f2=" + d_ret.f2 + "}, ret=" + f_ret);
 
+            
             GetE ret_e = luaenv.Global.Get<GetE>("ret_e");//delegate可以返回更复杂的类型，甚至是另外一个delegate
             e = ret_e();
             e();

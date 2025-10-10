@@ -1,0 +1,12 @@
+local baseMap = require("baseMap")
+local map= baseMap.CreateMap("testMap")
+function map:InitVars(self)
+    map.g.testString=""
+    print("testMap InitVars")
+end
+function map:InitMap(self)
+    map.CreateActor("114514",1,1)
+    map.CreateActor("223344",1,2)
+end
+
+return map
