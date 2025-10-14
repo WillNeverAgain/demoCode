@@ -9,6 +9,9 @@ namespace XLuaTest.GameLuaTest
         public TextAsset luaScript;
         internal static LuaEnv luaEnv = new LuaEnv(); // Shared Lua environment
 
+        [SerializeField] private GameObject floor,actorPrefab;
+        public Map map;
+
         void Start()
         {
             // 添加自定义加载器：从Resources加载Lua文件
@@ -34,26 +37,19 @@ namespace XLuaTest.GameLuaTest
             if (result != null && result.Length > 0)
             {
                 LuaTable table = (LuaTable)result[0];
-                foreach (var obj in table.GetKeys())
-                {
-                    Debug.Log($"key {obj}: {table.Get<object>(obj).GetType().FullName}");
-                    if(obj.Equals("ReturnMap"))
-                    {
-                        var func = table.Get<LuaFunction>("ReturnMap");
-                        var temp= func.Call();
-                        if (temp != null && temp[0] != null)
-                        {
-                            Debug.Log(temp[0].GetType().ToString());
-                        }
-                    }
-                }
                 IMapCreator te =  table.Cast<IMapCreator>(); ;
                 te.InitVars();
                 te.InitMap();
-                Map map = te.ReturnMap();
+                te.InItEvent();
+                map = te.ReturnMap();
+                LuaEventComponent temp = new LuaEventComponent(map.EventBusCore,table);
+                CreatMap();
+
                 foreach (var actor in map.Actors)
                 {
                     Debug.Log($"Actor UUID: {actor.Uuid}, Position: {actor.Position}");
+                   var  tempActor=Instantiate(actorPrefab,new Vector3(actor.Position.x,1.4f,actor.Position.y),Quaternion.identity);
+                   tempActor.GetComponent<TestCapule>().actor = actor;
                 }
             }
             else
@@ -61,6 +57,19 @@ namespace XLuaTest.GameLuaTest
                 Debug.LogError("Lua script did not return a valid IMapCreator object.");
             }
         }
-
+        private void CreatMap()
+        {
+            for (int i = -10; i < 10; i++)
+            {
+                for (int z = -10; z < 10; z++)
+                {
+                    Instantiate(floor, new Vector3(i, 0, z),Quaternion.identity);
+                }
+            }
+        }
+        public void DebugButton()
+        {
+            map.EventBusCore.Publish(new DebugEvent.DebugEventInfo(){ctx="AAAAAAbug批发"});
+        }
     }
 }

@@ -1,12 +1,42 @@
 local baseMap = require("baseMap")
 local map= baseMap.CreateMap("testMap")
+local camera = CS.XLuaTest.GameLuaTest.GameMainCamera
 function map:InitVars(self)
     map.g.testString=""
     print("testMap InitVars")
 end
 function map:InitMap(self)
-    map.CreateActor("114514",1,1)
-    map.CreateActor("223344",1,2)
+    map:CreateActor("114514",1,1)
+    map:CreateActor("223344",1,2)
+    map:CreateActor("2233441",3,4)
+    map:CreateActor("3233441",-3,4)
+end
+function map:InItEvent(self)
+        map.EventItems= {}
+map.EventItems[0]={
+  eventType = "Debug",
+        enable = false,
+        action = function(value)
+             print(value)
+        end
+}
+map.EventItems[1]={
+  eventType = "Debug",
+        enable = true,
+        action = function(value)
+             print(value)
+             print(value)
+        end
+}
+
+map.EventItems[2]={
+  eventType = "ActorDestroy",
+        enable = true,
+        action = function(value)
+             print("-----Destory----")
+            camera.FocusOnActor(value)
+        end
+}
 end
 
 return map

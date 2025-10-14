@@ -6,6 +6,7 @@ function M.CreateMap(uuid)
     local map = {} -- 使用local避免全局污染
     map.model = baseMapClass:CreateMap() -- 创建C# Map实例
     map.g = {} -- 初始化g表，用于存储变量
+
     -- 定义方法：使用冒号语法传递self
     function map:CreateActor(uuid, x, y)
         map.model:CreateActor(uuid, x, y)

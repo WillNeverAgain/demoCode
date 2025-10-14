@@ -65,6 +65,9 @@
 		<type fullname="XLuaTest.Foo2Child" preserve="all"/>
 		<type fullname="XLuaTest.Foo" preserve="all"/>
 		<type fullname="XLuaTest.FooExtension" preserve="all"/>
+		<type fullname="XLuaTest.GameLuaTest.BuffCreator" preserve="all"/>
+		<type fullname="XLuaTest.GameLuaTest.ClickTimer" preserve="all"/>
+		<type fullname="XLuaTest.GameLuaTest.GameMainCamera" preserve="all"/>
 		<type fullname="XLuaTest.GameLuaTest.Map" preserve="all"/>
 		<type fullname="XLuaTest.GameLuaTest.Actor" preserve="all"/>
 		<type fullname="Tutorial.DerivedClass+TestEnumInner" preserve="all"/>

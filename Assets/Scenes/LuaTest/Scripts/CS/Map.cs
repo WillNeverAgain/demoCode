@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using MyFrame.FightSystem.Event;
 using UnityEngine;
 using XLua;
 namespace XLuaTest.GameLuaTest
@@ -22,8 +23,15 @@ namespace XLuaTest.GameLuaTest
         /// 放回map
         /// </summary>
         Map ReturnMap();
-    }
 
+        void InItEvent();
+    }
+    public enum EventTypes
+    {
+        OnCreateActor,
+        OnDestroyActor,
+    }
+    
 // Map.cs - 地图核心类
     [LuaCallCSharp]
     public class Map 
@@ -32,11 +40,19 @@ namespace XLuaTest.GameLuaTest
         public string Name { get; set; }
         public List<Actor> Actors { get; } = new List<Actor>();
 
+        public IEventBusCore EventBusCore;
+        public Map( )
+        {
+            EventBusCore = new EventBusCore();
+        }
         public static Map CreateMap()
         {
-            return new Map();
+            return new Map(); 
         }
-        
+        public static Map GetCurrentMapInfo()
+        {
+            return  GameObject.Find("MapInfo").GetComponent<TestMapMono>().map;
+        }
         // 创建角色接口
         public void CreateActor(string uuid, float x, float y)
         {

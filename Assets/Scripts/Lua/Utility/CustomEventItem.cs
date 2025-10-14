@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using XLua;
+using XLuaTest.GameLuaTest;
 namespace Lua.Utility
 {
     /// <summary>
@@ -10,26 +11,32 @@ namespace Lua.Utility
     public abstract class CustomEventItem
     {
         public abstract string EventType {get;}
-        public string EventName;
         public bool enable;
         /// <summary>
         /// 函数上下文
         /// </summary>
         public void Init(LuaTable context)
         {
-            EventName = context.Get<string>("eventName");
             enable =  context.Get<bool>("enable");
             ActionInit(context);
         }
         protected abstract void ActionInit(LuaTable context);
         public abstract CustomEventItem Clone();
+        public abstract void Subscribe(LuaEventComponent luaTable);
     }
+
+
+
 
     /// <summary>
     /// 直接输出一个信息
     /// </summary>
     public class DebugEvent : CustomEventItem
     {
+        public class DebugEventInfo : IEvent
+        {
+            public string ctx;
+        }
         [CSharpCallLua]
         public delegate void DebugEventDelegate(string value);
         public override string EventType => "Debug";
@@ -42,8 +49,44 @@ namespace Lua.Utility
         {
             return new DebugEvent();
         }
+        public override void Subscribe(LuaEventComponent luaTable)
+        {
+            luaTable.Subscribe<DebugEventInfo>(CallBack);
+        }
+        public void CallBack(DebugEventInfo info)
+        {
+            action(info.ctx);
+        }
     }
 
+    public class OnActorDestroyEvent : CustomEventItem
+    {
+        public class ActorDestroyInfo : IEvent
+        {
+            public string uuid;
+        }
+        [CSharpCallLua]
+        public delegate void OnActorDestroyDelegate(string uuid);
+        public override string EventType => "ActorDestroy";
+        public OnActorDestroyDelegate action;
+        protected override void ActionInit(LuaTable context)
+        { 
+            action= context.Get<OnActorDestroyDelegate>("action");
+        }
+        public override CustomEventItem Clone()
+        {
+            return new OnActorDestroyEvent();
+        }
+        public override void Subscribe(LuaEventComponent luaTable)
+        {
+            luaTable.Subscribe<ActorDestroyInfo>(CallBack);
+        }
+        public void CallBack(ActorDestroyInfo info)
+        {
+            action(info.uuid);
+        }
+    }
+    
     public interface LuaEventFactory
     {
         public CustomEventItem CreatLuaEvent(LuaTable context);
@@ -62,6 +105,7 @@ namespace Lua.Utility
         {
             eventMap = new Dictionary<string, CustomEventItem>();
             AddEvent(new DebugEvent());
+            AddEvent(new OnActorDestroyEvent());
         }
         private void AddEvent(CustomEventItem eventItem)
         {
