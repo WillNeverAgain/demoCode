@@ -1,8 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-public class SimpleCamera : MonoBehaviour
+namespace ODG.Test.ArtAssetsTest
 {
+    public class SimpleCamera : MonoBehaviour
+    {
 
+    }
 }
