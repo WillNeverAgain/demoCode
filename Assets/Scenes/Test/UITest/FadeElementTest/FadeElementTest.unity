@@ -281,9 +281,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   usingToken: 1
   manageGameObjectActive: 0
-  delay: 1
+  showDelay: 0.1
+  hideDelay: 0
   _canvasGroup: {fileID: 519392597}
-  duration: 1
+  duration: 0.3
 --- !u!225 &519392597
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -524,9 +525,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   usingToken: 1
   manageGameObjectActive: 0
-  delay: 0
+  showDelay: 0.1
+  hideDelay: 0
   _canvasGroup: {fileID: 851243063}
-  duration: 1
+  duration: 0.3
 --- !u!225 &851243063
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -887,9 +889,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   usingToken: 1
   manageGameObjectActive: 0
-  delay: 2
+  showDelay: 0
+  hideDelay: 0
   _canvasGroup: {fileID: 2100082369}
-  duration: 1
+  duration: 0.5
 --- !u!225 &2100082369
 CanvasGroup:
   m_ObjectHideFlags: 0

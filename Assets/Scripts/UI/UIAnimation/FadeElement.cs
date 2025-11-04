@@ -13,12 +13,6 @@ namespace ODG.UI.Animation
     /// </summary>
     public abstract class FadeElement : MonoBehaviour
     {
-        public UniTask ActiveTask {
-            get {
-                return activeTask;
-            }
-        }
-
         protected CancellationToken ActiveTaskToken {
             get {
                 if (!usingToken)
@@ -45,6 +39,7 @@ namespace ODG.UI.Animation
         protected abstract void OnSkipShow();
         public async UniTask HideWithUniTaskReturn(CancellationToken token)
         {
+            IsFading = true;
             if(token!=null)
                 token.ThrowIfCancellationRequested();
     
@@ -59,9 +54,9 @@ namespace ODG.UI.Animation
             try
             {
                 isShown = false;
-                await UniTask.Delay(TimeSpan.FromSeconds(delay), DelayType.UnscaledDeltaTime, cancellationToken: _currentAnimationCTS.Token);
+                await UniTask.Delay(TimeSpan.FromSeconds(hideDelay), DelayType.UnscaledDeltaTime, cancellationToken: _currentAnimationCTS.Token);
                 await OnHideWithUniTaskReturn(_currentAnimationCTS.Token);
-                activeTask = UniTask.CompletedTask;
+                IsFading = false;
             }
             catch (OperationCanceledException)
             {
@@ -76,6 +71,7 @@ namespace ODG.UI.Animation
         
         public async UniTask ShowWithUniTaskReturn(CancellationToken token)
         {
+            IsFading = true;
             if(token!=null)
                 token.ThrowIfCancellationRequested();
     
@@ -90,9 +86,9 @@ namespace ODG.UI.Animation
             try
             {
                 isShown = false;
-                await UniTask.Delay(TimeSpan.FromSeconds(delay), DelayType.UnscaledDeltaTime, cancellationToken: _currentAnimationCTS.Token);
+                await UniTask.Delay(TimeSpan.FromSeconds(showDelay), DelayType.UnscaledDeltaTime, cancellationToken: _currentAnimationCTS.Token);
                 await OnShowWithUniTaskReturn(_currentAnimationCTS.Token);
-                activeTask = UniTask.CompletedTask;
+                IsFading = false;
             }
             catch (OperationCanceledException)
             {
@@ -113,25 +109,27 @@ namespace ODG.UI.Animation
         /// </summary>
         [SerializeField]
         private bool usingToken = true;
-        
-        
-        protected UniTask activeTask;
         /// <summary>
         /// 是否管理物体的开关
         /// </summary>
         [SerializeField]
         private bool manageGameObjectActive;
-        /// <summary>
-        /// 触发延时
-        /// </summary>
-        [SerializeField]
-        private float delay;
         
         /// <summary>
+        /// 延时
+        /// </summary>
+        [SerializeField]
+        private float showDelay;
+        [SerializeField]  
+        private float hideDelay;
+
+        /// <summary>
         /// 目前状态的标识符
-        /// 播放动画前修改
+        /// 播放播放前修改
         /// </summary>
         private bool isShown;
+        
+        public bool IsFading { get; private set; }
         
         /// <summary>
         /// 用于取消动画

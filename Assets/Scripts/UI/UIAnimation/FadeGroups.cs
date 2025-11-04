@@ -7,8 +7,6 @@ namespace ODG.UI.Animation
 {
     public class FadeGroups : MonoBehaviour
     {
-
-        
         public event Action<FadeGroups> OnFadeComplete;
         public event Action<FadeGroups> OnShowComplete;
         public event Action<FadeGroups> OnHideComplete;
