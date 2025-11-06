@@ -5,7 +5,7 @@
 
 using System;
 using System.Collections.Generic;
-using System.Linq;
+using System.Numerics;
 
 namespace MyFrame.DataManager
 {
@@ -15,21 +15,23 @@ namespace MyFrame.DataManager
         {
             {"string",typeof(string) },
             {"int",typeof(int) },
-            {"long",typeof(long) },
             {"float",typeof(float) },
-            {"double",typeof(double) },
             {"bool",typeof(bool) },
-            { "int_arry",typeof(int[])}
+            { "int_arry",typeof(int[])},
+            {"vector2",typeof(Vector2) },
+            {"vector3",typeof(Vector3) }
         };
         public int GetNeedDeserializerLines()
         {
             return 3;
         }
 
-        public bool TryDeserializerSchema(List<string[]> lines, out TableSchema schema)
+        public bool TryDeserializerSchema(List<string[]> lines, out TableSchema schema, out string[] keys)
         {
             int len = 0;
             schema = null;
+            keys = null;
+            Dictionary<string,TableColumn> dic = new Dictionary<string, TableColumn>();
             for ( int i = 0; i < lines.Count; i++ )
             {
                 string[] line = lines[i];
@@ -37,11 +39,21 @@ namespace MyFrame.DataManager
                 if (len == 0) len = line.Length;
                 else if (len != line.Length) return false;
             }
+            keys = new string[len];
             for (int i = 0; i <len ; i++)
             {
-                if (!keyValuePairs.TryGetValue(lines[2][i] ?? "string",out Type type)) return false;
-                TableColumn c = new TableColumn("策划备注: " + lines[0][i] + "别名: " + lines[1][i] , type);
+                var typeToken = (lines[2][i] ?? "string").Trim().ToLowerInvariant();
+                if (!keyValuePairs.TryGetValue(typeToken, out var type)) return false;
+
+                var alias = lines[1][i]?.Trim();
+                if (string.IsNullOrEmpty(alias)) return false;
+
+                var comment = (lines[0][i] ?? string.Empty).Trim();
+                TableColumn c = new TableColumn($"策划备注:{comment} 别名:{alias}", type);
+                if (!dic.TryAdd(alias, c)) { return false; }
+                keys[i] = alias;
             }
+            schema = new TableSchema(dic);
             return true;
 
         }
