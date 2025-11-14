@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -6,6 +7,7 @@ using Sirenix.OdinInspector;
 using Sirenix.Utilities.Editor;
 using TMPro;
 using UnityEngine.Serialization;
+using UnityEngine.UI;
 
 namespace ODG.Process.Dungeon.UI
 {
@@ -15,6 +17,14 @@ namespace ODG.Process.Dungeon.UI
     /// </summary>
     public class DungeonObj : MonoBehaviour
     {
+        
+        // 公开属性
+        public string ID => _buttonID;
+        public string DungeonName => _name;
+        public Sprite DungeonPreviewSprite => _dungeonImageSprite;
+        public string ScenePath => _scenePath;
+        public string DungeonDescription => _description;
+        
         [FoldoutGroup("Binding")]
         [InfoBox("此处不需要更改，一些基础信息绑定")]
         [SerializeField]
@@ -22,6 +32,9 @@ namespace ODG.Process.Dungeon.UI
         [FoldoutGroup("Binding")]
         [SerializeField]
         private DungeonTargetCollection _targetCollection;
+        [FoldoutGroup("Binding")]
+        [SerializeField]
+        private Button _dungeonButton;
         
         [FoldoutGroup("Config", Order = 0)]
         [Header("=== 基础信息 ===")]
@@ -123,9 +136,9 @@ namespace ODG.Process.Dungeon.UI
         private bool HasConfigurationWarningsOnly() => !HasConfigurationErrors() && (string.IsNullOrEmpty(_name) || _targetCollection == null);
         private bool IsConfigurationValid() => !HasConfigurationErrors() && !HasConfigurationWarningsOnly();
 
-        // 公开属性
-        public string ID => _buttonID;
-        public string DungeonName => _name;
+        private void Awake()
+        {
+        }
 
         private void OnUINameChanged()
         {

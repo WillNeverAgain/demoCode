@@ -53,6 +53,8 @@ namespace ODG.Process.Dungeon
             }
     
             EditorGUILayout.EndHorizontal();
+            
+            UnityEditor.SceneManagement.EditorSceneManager.MarkSceneDirty(gameObject.scene);
     
             return value; // 返回原始值，因为是只读的
         }

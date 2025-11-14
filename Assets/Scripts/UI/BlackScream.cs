@@ -1,4 +1,7 @@
-﻿using UnityEngine;
+﻿using System;
+using Cysharp.Threading.Tasks;
+using ODG.UI.Animation;
+using UnityEngine;
 namespace ODG.UI
 {
     public class BlackScream : MonoBehaviour
@@ -9,7 +12,13 @@ namespace ODG.UI
             }
         }
         
-        [SerializeField] private CanvasGroup _blackScreamCanvasGroup;
-        
+        [SerializeField] private FadeGroups _blackScreamCanvasGroup;
+
+        public async UniTask FadeBlackScream(Func<UniTask> callback)
+        {
+            await _blackScreamCanvasGroup.Show();
+            await callback.Invoke();
+            await _blackScreamCanvasGroup.Hide();
+        }
     }
 }

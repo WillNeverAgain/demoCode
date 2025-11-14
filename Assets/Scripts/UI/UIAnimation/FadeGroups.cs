@@ -41,6 +41,7 @@ namespace ODG.UI.Animation
             await UniTask.WhenAll(res);
             isShow = true;
             isShowingProgress = false;
+            FinishShow();
         }
 
         public void SkipShow()
@@ -49,6 +50,7 @@ namespace ODG.UI.Animation
             {
                 fadeElement.SkipShow();
             }
+            FinishShow();
         }
 
         public async UniTask Hide()
@@ -70,6 +72,7 @@ namespace ODG.UI.Animation
             {
                 gameObject.SetActive(false);
             }
+            FinishHide();
         }
         public void SkipHide()
         {
@@ -77,6 +80,19 @@ namespace ODG.UI.Animation
             {
                 fadeElement.SkipHide();
             }
+            FinishHide();
+        }
+
+        private void FinishShow()
+        {
+            OnFadeComplete?.Invoke(this);
+            OnShowComplete?.Invoke(this);
+        }
+        
+        private void FinishHide()
+        {
+            OnFadeComplete?.Invoke(this);
+            OnHideComplete?.Invoke(this);
         }
         
         [SerializeField] 

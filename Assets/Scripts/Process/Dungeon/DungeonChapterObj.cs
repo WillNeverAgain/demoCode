@@ -24,11 +24,6 @@ namespace ODG.Process.Dungeon.UI
         [CustomValueDrawer("DungeonObjListDrawer")]
         private List<DungeonObj> _dungeonObjList = new List<DungeonObj>();
 
-        public void ShowIn(Canvas targetCanvas, Vector2 startPos)
-        {
-            
-        }
-        
         public void AutoGetDungeonObjList()
         {
             var duList= dungeonContainer.GetComponentsInChildren<DungeonObj>();
@@ -43,6 +38,7 @@ namespace ODG.Process.Dungeon.UI
         {
             EditorGUILayout.BeginHorizontal();
     
+
             // 检查对象是否丢失
             bool isMissing = value == null;
             if (isMissing)
@@ -71,6 +67,13 @@ namespace ODG.Process.Dungeon.UI
     
             EditorGUILayout.EndHorizontal();
     
+            
+            if (EditorGUI.EndChangeCheck())
+            {
+                // 标记对象为脏以便保存
+                EditorUtility.SetDirty(this);
+                UnityEditor.SceneManagement.EditorSceneManager.MarkSceneDirty(gameObject.scene);
+            }
             return value; // 返回原始值，因为是只读的
         }
     }
