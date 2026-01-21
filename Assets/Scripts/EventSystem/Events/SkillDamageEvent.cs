@@ -25,4 +25,20 @@ namespace MyFrame.EventSystem.Events
             RuntimeId = runtimeId;
         }
     }
+
+    public sealed class DamageEvent : IEvent
+    {
+        public Unit Attacker;
+        public Unit Defender;
+        public float DamageAmount;
+        public string Message;
+
+        public DamageEvent(Unit attacker, Unit defender, float damageAmount, string message = "")
+        {
+            Attacker = attacker;
+            Defender = defender;
+            DamageAmount = damageAmount;
+            Message = message;
+        }
+    }
 }

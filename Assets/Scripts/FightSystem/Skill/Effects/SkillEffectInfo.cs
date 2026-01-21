@@ -11,7 +11,7 @@ namespace MyFrame.FightSystem.Skill.Effects
     public sealed class SkillEffectInfo
     {
         public readonly string Descreption;
-        public readonly uint EffectId;
+        public readonly string EffectId;
         public readonly EffectTargetType TargetType;
         public readonly ISkillCondition Condition;
         public readonly ISkillEffectDependency Dependency;
@@ -19,6 +19,15 @@ namespace MyFrame.FightSystem.Skill.Effects
         /// Next Effect Execution Flow Control
         /// </summary>
         public EffectStatus NextFlow = EffectStatus.Alays;
+
+        public SkillEffectInfo(string descreption, string effectId, EffectTargetType targetType, ISkillCondition condition, ISkillEffectDependency dependency)
+        {
+            Descreption = descreption;
+            EffectId = effectId;
+            TargetType = targetType;
+            Condition = condition;
+            Dependency = dependency;
+        }
     }
 
 

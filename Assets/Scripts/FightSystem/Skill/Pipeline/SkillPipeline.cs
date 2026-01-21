@@ -11,6 +11,11 @@ namespace MyFrame.FightSystem.Skill.Core
     public class SkillPipeline
     {
         private IEventBusCore _eventBus;
+
+        public SkillPipeline(IEventBusCore eventBus)
+        {
+            _eventBus = eventBus;
+        }
         public SkillReport ExecuteSkill(SkillExecuteRequest request)
         {
             //  Õ∑≈«Î«Û+

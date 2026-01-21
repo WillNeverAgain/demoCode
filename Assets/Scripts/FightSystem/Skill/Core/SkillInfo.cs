@@ -9,7 +9,7 @@ namespace MyFrame.FightSystem.Skill.Core
 {
     public sealed class SkillInfo
     {
-        public readonly uint SkillId;
+        public readonly string SkillId;
         public readonly string SkillName;
         public readonly string SkillDesc;
 
@@ -21,5 +21,17 @@ namespace MyFrame.FightSystem.Skill.Core
         public readonly ITargetSelector TargetSelector; 
 
         public readonly ISkillEffect Effect;
+
+        public SkillInfo(string skillId, string skillName, string skillDesc, uint cD, uint aPCost, ISkillCondition condition, ITargetSelector targetSelector, ISkillEffect effect)
+        {
+            SkillId = skillId;
+            SkillName = skillName;
+            SkillDesc = skillDesc;
+            CD = cD;
+            APCost = aPCost;
+            Condition = condition;
+            TargetSelector = targetSelector;
+            Effect = effect;
+        }
     }
 }

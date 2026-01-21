@@ -47,9 +47,19 @@ namespace MyFrame.FightSystem.Skill.Core
             }
             try
             {
+                string message = String.Empty;  
                 // 选定AOE目标,center为ctx中输入
                 ITargetSelector targetSelector = _skillInfo.TargetSelector;
                 var aoeTargets = targetSelector.Select(ctx.Center, Host);
+
+                foreach(var t in aoeTargets)
+                {
+                    message += $"Target Selected: {t.UnitId}\n";
+                }
+                if (message == String.Empty)
+                {
+                    message = "No Target Selected!\n";
+                }
 
                 // 生成效果节点
                 ISkillEffect effect = _skillInfo.Effect;
@@ -67,7 +77,7 @@ namespace MyFrame.FightSystem.Skill.Core
                 buffer.Release();
 
                 // 返回技能执行报告
-                return new SkillReport(true, "Skill: " + _skillInfo.SkillId + " Execute Successfully!\n" + report.Message);
+                return new SkillReport(true, "Skill: " + _skillInfo.SkillId + " Execute Successfully!\n"+message + report.Message);
             }
             catch(Exception ex)
             {

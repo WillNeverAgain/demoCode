@@ -7,6 +7,7 @@
 using MyFrame.EventSystem.Interfaces;
 using System;
 using System.Collections.Generic;
+using UnityEngine;
 
 namespace MyFrame.EventSystem.Events
 {
@@ -31,13 +32,14 @@ namespace MyFrame.EventSystem.Events
         public void Release()
         {
             if (_events.Count == 0) return;
-
+            //Debug.Log("Releasing " + _events.Count + " buffered events.");
             try
             {
                 for (int i = 0; i < _events.Count; i++)
                 {
                     var (evt, publish) = _events[i];
                     publish(_eventBus, evt);
+                    //Debug.Log("Publish Event: " + evt.GetType().Name);
                 }
             }
             finally
