@@ -127,6 +127,8 @@ namespace MyFrame.FightSystem.Skill.Refs
         public float Defence;
         public float Attack;
 
+        public float MaxHP;
+
         public UnitPosition Position;
 
         public List<IBuff> Buffs;

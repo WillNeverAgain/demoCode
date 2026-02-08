@@ -52,14 +52,14 @@ namespace MyFrame.FightSystem.Skill.Core
                 ITargetSelector targetSelector = _skillInfo.TargetSelector;
                 var aoeTargets = targetSelector.Select(ctx.Center, Host);
 
-                foreach(var t in aoeTargets)
-                {
-                    message += $"Target Selected: {t.UnitId}\n";
-                }
-                if (message == String.Empty)
-                {
-                    message = "No Target Selected!\n";
-                }
+                //foreach(var t in aoeTargets)
+                //{
+                //    message += $"Target Selected: {t.UnitId}\n";
+                //}
+                //if (message == String.Empty)
+                //{
+                //    message = "No Target Selected!\n";
+                //}
 
                 // 生成效果节点
                 ISkillEffect effect = _skillInfo.Effect;
@@ -75,6 +75,9 @@ namespace MyFrame.FightSystem.Skill.Core
 
                 // 发布效果事件到事件总线
                 buffer.Release();
+
+                // CD
+                CurrentCD = _skillInfo.CD;
 
                 // 返回技能执行报告
                 return new SkillReport(true, "Skill: " + _skillInfo.SkillId + " Execute Successfully!\n"+message + report.Message);
@@ -92,7 +95,7 @@ namespace MyFrame.FightSystem.Skill.Core
 
 namespace MyFrame.FightSystem.Skill.Refs
 {
-    public readonly struct SkillExecuteContext
+    public sealed class SkillExecuteContext
     {
         public readonly Unit Center;
         public readonly SkillConditionContxt ConditionContxt;
@@ -106,7 +109,7 @@ namespace MyFrame.FightSystem.Skill.Refs
         }
     }
 
-    public readonly struct SkillEffectContext
+    public sealed class SkillEffectContext
     {
         public readonly Unit Host;
         public readonly Unit Center;
